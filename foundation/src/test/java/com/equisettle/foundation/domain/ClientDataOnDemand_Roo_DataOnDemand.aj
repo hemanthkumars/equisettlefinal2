@@ -53,7 +53,7 @@ privileged aspect ClientDataOnDemand_Roo_DataOnDemand {
     
     public void ClientDataOnDemand.setAuditCreatedDtTime(Client obj, int index) {
         Calendar auditCreatedDtTime = Calendar.getInstance();
-        obj.setAuditCreatedDtTime(auditCreatedDtTime);
+     //   obj.setAuditCreatedDtTime(auditCreatedDtTime);
     }
     
     public void ClientDataOnDemand.setCity(Client obj, int index) {
@@ -82,7 +82,7 @@ privileged aspect ClientDataOnDemand_Roo_DataOnDemand {
     
     public void ClientDataOnDemand.setLastLoggedIn(Client obj, int index) {
         Calendar lastLoggedIn = Calendar.getInstance();
-        obj.setLastLoggedIn(lastLoggedIn);
+ //       obj.setLastLoggedIn(lastLoggedIn);
     }
     
     public void ClientDataOnDemand.setLastName(Client obj, int index) {
