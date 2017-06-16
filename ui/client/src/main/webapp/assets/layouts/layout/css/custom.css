@@ -1,0 +1,294 @@
+/* here you can put your own css to customize and override the theme */
+
+
+.mt-element-step .step-background-thin .mt-step-number {
+font-size:105px;
+}
+
+.mt-element-step .step-background-thin .mt-step-title{
+font-size:22px!important;
+}
+.reqm .portlet.box>.portlet-body {
+	padding: 10px 15px 350px 15px;
+}
+
+.addcase2 .portlet.box>.portlet-body {
+	padding: 10px 15px 250px 15px;
+}
+
+.addcase .portlet.box>.portlet-body {
+	padding: 10px 15px 500px 15px;
+}
+@media only screen and (max-width: 62.063em) { 
+
+.addcase2 .portlet.box>.portlet-body {
+	padding: 10px 15px 400px 15px;
+}
+	
+.addcase .portlet.box>.portlet-body {
+	padding: 10px 15px 800px 15px;
+}
+
+.reqm .portlet.box>.portlet-body {
+	padding: 10px 15px 550px 15px;
+}
+
+
+} /* min-width 641px, medium screens */
+
+.myvideo {
+	text-align : center;
+	margin-bottom:15px;
+}
+
+.mywelcome .dashboard-stat .details {
+	left:0;
+	padding-right:0px;
+	right:0;
+	
+}
+
+
+.myspacer {
+	padding: 10px 0px;
+}
+
+
+.control-label {
+	margin-top:5px;
+	font-size:16px;
+	margin-bottom:5px;
+}
+
+.form-control {
+	margin-bottom:5px;
+}
+
+.line {
+	margin-top:15px;
+	border-bottom: 3px dashed #7D7D7D;
+	margin-bottom:15px;
+	margin-right:50px;
+	margin-left:50px;
+}
+.start {
+	margin-top:5px;
+}
+
+.mtop {
+	margin-top:5px;
+}
+
+.caseconversationcol {
+	margin-right:20px;
+}
+
+
+.attempt {
+	margin-bottom:15px;
+}
+
+.caseconversation {
+	padding: 10px 20px;
+	font-size:15px;
+}
+
+.caseconversation h4 {
+	font-weight:500;
+	color:#000000;
+}
+
+.caseconversation h5 {
+	font-weight:500;
+	border-bottom: solid 1px #7D7D7D;
+    display: inline;
+    padding-bottom: 1px;
+ }
+ 
+ .caseconversation .mytable {
+ 	margin-top:5px;
+ 	font-size:15px;
+ 
+ }
+  .caseconversation textarea{
+  	width:100%;
+  }
+ 
+  .caseconversation .mytable .lableleft {
+	width:40%;
+	color:#666666;
+	vertical-align:top;
+}
+
+ .caseconversation .mytable .lableright {
+ 	
+	width:60%;
+	color:#222222;
+}
+
+ 
+div.mytable {
+    display: table;
+    width: 100%;
+}
+
+div.mytable > div {
+    display: table-row;
+    width: 100%;
+}
+div.mytable > div > div {
+    display: table-cell;
+    width: 20%;
+}
+
+
+.mytable .lableleft {
+	width:30%;
+}
+
+.mytable .lableright {
+	width:70%;
+}
+
+.casedetailshead h3 {
+	font-size:30px;
+	display:inline-block;
+	font-weight:500!important;
+	color:#7D7D7D;
+}
+
+.casedetailshead {
+	font-size:15px;
+}
+
+.casedetailshead  .lableleft {
+	color: #666666;
+}
+
+.casedetailshead  .lableright {
+	color: #222222;
+}
+
+.casedetailshead [class*=" fa-"]:not(.fa-stack) {
+	font-size:44px;
+	color:#7d7d7d;
+}
+
+.casedetailshead h4 {
+	display:inline-block;
+	font-size:22px;
+	font-style:italic;
+	color:#7D7D7D;
+}
+
+.tabDiv {
+	border-bottom: 1px solid white;
+	padding-bottom:5px;
+}
+
+.caseconversation  {
+	font-size:16px;
+}
+
+.caseconversation .tabDiv {
+	border-bottom: 1px solid #eeeeee;
+}
+
+
+.casenum {
+	padding-left:10px;
+}
+
+.casedetailshead h3 span {
+	margin-right:10px;
+}
+
+.bak a{
+	background-color: #36c6d3;
+	color:#ffffff;
+}
+
+.bak a:hover{
+	background-color: #26A1AB;
+	color:#ffffff;
+	
+}
+
+
+.bak {
+	margin-top:20px;
+	margin-bottom:10px;
+}
+
+.cased {
+	background-color:#eeeeee;
+	padding-bottom:20px;
+}
+
+.casedetailshead {
+	background-color:#eeeeee;
+	padding:5px 10px;
+	margin:0px;
+}
+
+.bak .btn.m-icon-big [class^=m-icon-big-] {
+	margin-left:0px;
+	margin-right:5px;
+}
+
+.mt-widget-3 .mt-head {
+	padding:5px 0px;
+}
+
+.page-header.navbar .page-logo .logo-default {
+	margin-top:10px;
+}
+
+.marr{
+margin-right:20px!important;
+}
+
+.marr a {
+	color:#ffffff;
+}
+
+.marr a:hover {
+	text-decoration:none;
+}
+a .myhead h3 {
+	color: #FFFFFF;
+	text-align:center;
+}
+
+
+.mybox.dashboard-stat.blue {
+	transition: all 0.3s ease 0s;
+}
+    
+.mybox .dashboard-stat.blue:hover {
+  box-shadow: inset 0 0 0 5px #3071A9;
+}
+
+.mybox.dashboard-stat.green {
+	transition: all 0.3s ease 0s;
+}
+    
+.mybox .dashboard-stat.green:hover {
+  box-shadow: inset 0 0 0 5px #119fab;
+}
+
+.mybox .dashboard-stat.red {
+	transition: all 0.3s ease 0s;
+}
+    
+.mybox .dashboard-stat.red:hover {
+  box-shadow: inset 0 0 0 5px #e92835;
+}
+
+.mybox .dashboard-stat.purple {
+	transition: all 0.3s ease 0s;
+}
+    
+.mybox .dashboard-stat.purple:hover {
+  box-shadow: inset 0 0 0 5px #7c14a8;
+}

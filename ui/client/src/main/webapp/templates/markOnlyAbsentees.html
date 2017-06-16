@@ -1,0 +1,16 @@
+<div ng-controller="markOnlyAbsenteesCtrl" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Mark Only Absentees</h1></div>
+  Student Name<input type="text" ng-model="studentSearchForAbsentees"  ng-click="clearStudentName()" id="studentSearchForAbsentees" class="form-control"  placeholder="Start Typing...." style="width: 300px;display: inline-block;"/>
+  Date Of Absent<input type="text" ng-model="attendanceMarkingdate"  id="attendanceMarkingdate" class="form-control"  placeholder="Attendance Date" style="width: 100px;display: inline-block;"/>
+  <select class="form-control"    ng-model="schoolSession"  id="schoolSession" ng-options="item as item.sessionName + ' ( ' + item.sessionTimings +' ) ' for item in schoolSessions track by item.schoolSessionId"  style="width: 180px;display: inline-block;">
+            <option value="">--Select Session--</option>
+   </select>
+  <button type="button"  ng-click="resetMarkAbsentees()" class="btn btn-default" style="width: 100px;display: inline-block;">Reset</button>
+  
+  <button type="button" id="saveAbsentButton" onclick="saveAbsenteesData()" class="btn btn-default" style="width: 100px;display: inline-block;">Save</button>   
+   
+<span id="studentAbsenteesData"></span>  
+ </div>
+</div>
+

@@ -1,0 +1,131 @@
+<div ng-controller="staffMgmtCtrl" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Staff List</h1></div>
+  <span id="staffFullData"></span>
+</div>
+
+<div id="staffAddEditModal" class="modal fade" role="dialog"> 
+  <div class="modal-dialog testmodal">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #36C6D3;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{StaffNameHeading}}</h4>
+        <h2 style="color:#ffffff;">Staff Details</h2>
+      </div>
+      <div class="modal-body">
+  
+<div class="row studentinfo"> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <h3> Personal Information</h3> </div> </div>
+					<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label><select class="form-control" ng-model="prefixId"  id="prefix"  ng-options="item as item.prefix for item in prefixs track by item.prefixId"  >
+                             <option value="">--Prefix--</option>
+                             </select></label>
+                             <label>Staff Name
+         					<input type="text" ng-model="staffName" id="staffName" class="form-control"  placeholder="Enter Staff Name"/></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label>Gender <select class="form-control" ng-model="gender"  id="gender"  ng-options="item as item.gender for item in genders track by item.genderId"  >
+           					 <option value="">--Gender--</option>
+       					  </select></label>  
+                        </div>
+       					</div>
+       					<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Date Of Joining <input type="text" ng-model="doj" id="doj"  class="form-control"  placeholder="dd-MM-yyyy"/></label>
+                           <label>Date Of Birth <input type="text" ng-model="dob" id="dob"  class="form-control"  placeholder="dd-MM-yyyy"/></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label>Religion <select class="form-control" ng-model="religionId"  id="religionId"  ng-options="item as item.religion for item in religions track by item.religionId"  >
+           					 <option value="">--Religion--</option>
+       					  </select></label>  
+                        </div>
+       					</div>
+       					
+       					<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label>Blood Group <select class="form-control" ng-model="bloodGroupId"  id="bloodGroupId"  ng-options="item as item.bloodGroup for item in bloodGroups track by item.bloodGroupId"  >
+           					 <option value="">--BloodGroup--</option>
+       					  </select></label> 
+       					   <label>Mother Tongue <select class="form-control" ng-model="languageId"  id="languageId"  ng-options="item as item.language for item in languages track by item.languageId"  >
+           					 <option value="">--Mother Tongue--</option>
+       					  </select></label> 
+       					   <label>Gender <select class="form-control" ng-model="religionId"  id="religionId"  ng-options="item as item.caste for item in castes track by item.casteId"  >
+           					 <option value="">--Caste--</option>
+       					  </select></label> 
+                        </div>
+                        
+       					</div>
+
+<div class="row studentinfo"> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <h3> Job Information</h3> </div> </div>
+
+					<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label> <select class="form-control" ng-model="departmentId"  id="departmentId"  ng-options="item as item.department for item in departments track by item.departmentId"  >
+           					 <option value="">--Department--</option>
+       					  </select></label> 
+       					   <label> <select class="form-control" ng-model="postionId"  id="postionId"  ng-options="item as item.postion for item in postions track by item.postionId"  >
+           					 <option value="">--Position--</option>
+       					  </select></label> 
+       					 <label>Job Title <input type="text" ng-model="jobTitle" id="jobTitle"  class="form-control"  placeholder="Enter Job Title"/></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                         <label>Qualification <input type="text" ng-model="qualification" id="qualification"  class="form-control"  placeholder="Enter Date Of Joining"/></label>
+                          <label>Relevant Years Experience <input type="number" ng-model="yearsOfExperience" id="yearsOfExperience"   class="form-control"  placeholder="Enter Date Of Joining"/></label>
+                           <label>Total Experience<input type="number" ng-model="totalYearOfExp" id="totalYearOfExp"  class="form-control"   placeholder="Enter Total Years Of Experience"/></label> 
+                        </div>
+       					</div>
+
+<div class="row studentinfo"> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <h3> Parents Information</h3> </div> </div>
+					<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+       					 <label>Father Name <input type="text" ng-model="fatherName" id="fatherName"  class="form-control"  placeholder="Enter Father name"/></label>
+       					  <label>Mother Name <input type="text" ng-model="motherName" id="motherName"  class="form-control"  placeholder="Enter Mother name"/></label>
+                        </div>
+                        
+       					</div>
+
+           <div class="row studentinfo"> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <h3> Contact Information</h3> </div> </div>
+				<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+       					 <label>Mobile No <input type="text" ng-model="mobileNo" id="mobileNo"  class="form-control"  placeholder="Enter Mobile no"/></label>
+       					  <label>Email <input type="text" ng-model="email" id="Job Title"  class="form-control"  placeholder="something@something.com"/></label>
+                        </div>
+       					</div>
+
+<div class="row studentinfo"> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <h3> Address Information</h3> </div> </div>
+                  <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+       					 <label>Address <input type="text" ng-model="address" id="address"  class="form-control"  placeholder="Address"/></label>
+       					  <label>City <label> <select class="form-control" ng-model="cityId"  id="cityId"  ng-options="item as item.city for item in cities track by item.cityId"  >
+           					 <option value="">--City--</option>
+       					  </select></label> </label>
+       					  <label>State  <label> <select class="form-control" ng-model="religionId"  id="religionId"  ng-options="item as item.state for item in states track by item.stateId"  >
+           					 <option value="">--State--</option>
+       					  </select></label> </label>
+       					  <label>Pincode <input type="text" ng-model="pincode" id="pincode"  class="form-control"  placeholder="Pin Code"/></label>
+       					  <label>Country  <label> <select class="form-control" ng-model="countryId"  id="countryId"  ng-options="item as item.country for item in countries track by item.countryId"  >
+           					 <option value="">--Country--</option>
+       					  </select></label> </label>
+                        </div>
+       					</div>
+        <br />
+      <div class="row">
+      <div style="margin-top: 15px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          	 <center>  <input ng-click="saveStaffData()" class="btn button btn-default" type="submit" value="Save Staff Info" /> </center>  
+   		  </div>
+   		  </div>
+      
+      </div>
+      <div class="modal-footer" style="background-color: #36C6D3;">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+

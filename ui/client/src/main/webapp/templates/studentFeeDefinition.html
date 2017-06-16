@@ -1,0 +1,41 @@
+<div ng-controller="studentFeeDefnCtrl" class="page-content"> 
+<div class="container">
+  <div class="breadcrumbs"><h1>Students Fee Definition</h1></div>
+  Class <input type="text" ng-model="schoolClass" ng-click="resetDataFeeDefn()" id="schoolClass" class="form-control"  placeholder="Start Typing..." style="width: 300px;display: inline-block;"/>
+    <select class="form-control" ng-model="schoolFeeType"  id="schoolFeeType"  ng-options="item as item.feeType for item in feeTypes track by item.schoolFeeTypeId"  style="width: 180px;display: inline-block;">
+            <option value="">--Select Fee Type--</option>
+    </select>
+   Amount <input type="text" ng-model="feeAmount"  id="feeAmount" class="form-control"  placeholder="Enter Fee Amount" style="width: 300px;display: inline-block;"/>
+ 
+  <button type="submit"  onclick="saveFeeDefn()" class="btn btn-default" style="width: 150px;display: inline-block;">Save Fee Definition</button> 
+  <br/>
+  <span id="studentFeeDefnData"></span>
+  
+   <div id="schoolFeeEditModal" class="modal fade" role="dialog" >
+     <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" ><b><span id="schoolFeeEditStudentData"></span></b></h4>
+      </div>
+      <div class="modal-body">
+        <span id="schoolFeeEditData"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+  
+  
+</div>
+</div>
+
+
+  
+

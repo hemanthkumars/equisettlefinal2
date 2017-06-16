@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_equisettle_foundation_domain_Client" object="${client}" path="/clients" z="YKFuSRiSciWnrWvnijGBLdK75p0=">
+        <field:display field="countryId" id="s_com_equisettle_foundation_domain_Client_countryId" object="${client}" z="ZftxtThoxaEb7T4kOx6XWtI3ryU="/>
+        <field:display field="firstName" id="s_com_equisettle_foundation_domain_Client_firstName" object="${client}" z="zoE2o8oTl3ZRSGfgDF1Kf89fnDE="/>
+        <field:display field="lastName" id="s_com_equisettle_foundation_domain_Client_lastName" object="${client}" z="tIugSdwodugLTVs0Su/3a1ekrSw="/>
+        <field:display field="email" id="s_com_equisettle_foundation_domain_Client_email" object="${client}" z="C1ECpwwsygEGCdgbbixTNl+YTlU="/>
+        <field:display field="address" id="s_com_equisettle_foundation_domain_Client_address" object="${client}" z="zJgyUAWJuWF7H7y/eu42mh1Ohak="/>
+        <field:display field="city" id="s_com_equisettle_foundation_domain_Client_city" object="${client}" z="kkbnP87dJB3XJqfpzOkZVi6UoZY="/>
+        <field:display field="userName" id="s_com_equisettle_foundation_domain_Client_userName" object="${client}" z="3ELzFpN2qQ5sp1g3AQvgLRC1Puk="/>
+        <field:display field="password" id="s_com_equisettle_foundation_domain_Client_password" object="${client}" z="OUy6mFAKdRvSYwxdBODPufPnt7E="/>
+        <field:display calendar="true" dateTimePattern="${client_lastloggedin_date_format}" field="lastLoggedIn" id="s_com_equisettle_foundation_domain_Client_lastLoggedIn" object="${client}" z="3FY1alBx9YXNS/nQZIjwNeVmeRs="/>
+        <field:display calendar="true" dateTimePattern="${client_auditcreateddttime_date_format}" field="auditCreatedDtTime" id="s_com_equisettle_foundation_domain_Client_auditCreatedDtTime" object="${client}" z="NU2RZRuT2lpd+YsKuuWY9G8fyJY="/>
+    </page:show>
+</div>

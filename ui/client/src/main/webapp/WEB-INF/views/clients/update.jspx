@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_equisettle_foundation_domain_Client" idField="clientId" modelAttribute="client" path="/clients" versionField="none" z="pTAMryMUdAal37P3SvhWFFJOqcw=">
+        <field:simple field="case1s" id="c_com_equisettle_foundation_domain_Client_case1s" messageCode="entity_reference_not_managed" messageCodeAttribute="Case" z="Pl1ILBE9NwcZ6Ha6Gn9NHHudlh4="/>
+        <field:simple field="case1s1" id="c_com_equisettle_foundation_domain_Client_case1s1" messageCode="entity_reference_not_managed" messageCodeAttribute="Case" z="2t6k/lvxcA6yCBasUESsJ7jZq/k="/>
+        <field:simple field="case1s2" id="c_com_equisettle_foundation_domain_Client_case1s2" messageCode="entity_reference_not_managed" messageCodeAttribute="Case" z="63suJty6zk5GVs4OcsWeR3f3zOo="/>
+        <field:simple field="case1s3" id="c_com_equisettle_foundation_domain_Client_case1s3" messageCode="entity_reference_not_managed" messageCodeAttribute="Case" z="XPTiNzdbXYWbv2BsgbqF26MGUUs="/>
+        <field:simple field="caseNegotiations" id="c_com_equisettle_foundation_domain_Client_caseNegotiations" messageCode="entity_reference_not_managed" messageCodeAttribute="Case Negotiation" z="Dcn6DRLT/RPuU14gmBVp9oXyjrU="/>
+        <field:simple field="caseNegotiations1" id="c_com_equisettle_foundation_domain_Client_caseNegotiations1" messageCode="entity_reference_not_managed" messageCodeAttribute="Case Negotiation" z="FbvHpmREgbijCZeG0DdLfz/Rwog="/>
+        <field:select field="countryId" id="c_com_equisettle_foundation_domain_Client_countryId" itemValue="countryId" items="${countrys}" path="/countrys" z="6u0n6aApd+Ha3A0u/U5nre+/+Nc="/>
+        <field:input field="firstName" id="c_com_equisettle_foundation_domain_Client_firstName" z="1S6G+AtmXVRZ+8/yiUM58SfBtyQ="/>
+        <field:input field="lastName" id="c_com_equisettle_foundation_domain_Client_lastName" z="MM7xLvXF8GidUZh/5eWf0R4HHPE="/>
+        <field:input field="email" id="c_com_equisettle_foundation_domain_Client_email" validationMessageCode="field_invalid_email" z="SBKITr4btJ9yKCHT2wBEShroJx0="/>
+        <field:input field="address" id="c_com_equisettle_foundation_domain_Client_address" z="9G5KmITXx7F3ThbmxWC7JQ57A48="/>
+        <field:input field="city" id="c_com_equisettle_foundation_domain_Client_city" z="w6Hxpp+hKjk0JHEPY904hi4/DXM="/>
+        <field:input field="userName" id="c_com_equisettle_foundation_domain_Client_userName" z="R9poN+0wOweyzGKaqnVDKXCv6/w="/>
+        <field:input field="password" id="c_com_equisettle_foundation_domain_Client_password" z="lU6RiP/Yep8OdL99GgA/eBmKVfg="/>
+        <field:datetime dateTimePattern="${client_lastloggedin_date_format}" field="lastLoggedIn" id="c_com_equisettle_foundation_domain_Client_lastLoggedIn" z="ew132ICgEO6+PzqWrDtNho+JHmg="/>
+        <field:datetime dateTimePattern="${client_auditcreateddttime_date_format}" field="auditCreatedDtTime" id="c_com_equisettle_foundation_domain_Client_auditCreatedDtTime" z="v5PWuuDqgfHxvGG2p5RiN5WRyOI="/>
+    </form:update>
+</div>

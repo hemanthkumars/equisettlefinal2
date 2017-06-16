@@ -1,0 +1,174 @@
+<div ng-controller="studentMgmtCtrl" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Student's List</h1></div>
+  Class <input type="text" ng-model="schoolClassSection" ng-click="resetClassSectionData()" id="schoolClassSection" class="form-control"  placeholder="Start Typing..." style="width: 300px;display: inline-block;"/>
+  <input type="hidden" id="schoolClassSectionId" value=""/>
+  <button type="submit"  onclick="openStudentModalForEdition()" class="btn btn-default" style="width: 150px;display: inline-block;">Admit New Student</button> 
+  <h3>{{schoolClassSectionHeading}}</h3>
+  <span id="studentFullData"></span>
+   <input type="hidden" id="studentId" value="0"/>
+</div>
+
+<div id="studentAddEditModal" class="modal fade" role="dialog"> 
+  <div class="modal-dialog testmodal">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #36C6D3;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{studentNameHeading}}{{admissionNo}}</h4>
+        <h2 style="color:#ffffff;">Student Details</h2>
+      </div>
+      <div class="modal-body">
+  
+<div class="row studentinfo"> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <h3> Students Information</h3> </div> </div>
+  
+      					<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Student Name
+         					<input type="text" ng-model="studentFirstName" id="studentFirstName" class="form-control"  placeholder="Enter Student Name"/></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label>Gendre <select class="form-control" ng-model="gender"  id="gender"  ng-options="item as item.gender for item in genders track by item.genderId"  >
+            <option value="">--Gender--</option>
+         </select></label>  
+                        </div>
+       					</div>
+          <!--  Admission Date <input type="text" ng-model="admissionDate" id="admissionDate"  class="form-control"  placeholder="dd-MM-yyyy" style="width: 150px;display: inline-block;"/> -->
+          <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Date Of Birth <input type="text" ng-model="dob" id="dob"  class="form-control"  placeholder="dd-MM-yyyy"/></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label> Admission No : <input type="text" ng-model="admissionNo" id="admissionNo" disabled="disabled" class="form-control"/></label>  
+                        </div>
+                         </div>  
+                         
+              <div class="row">             
+           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label> Your Blood Group <select class="form-control" ng-model="bloodGroup"  id="bloodGroup"  ng-options="item as item.bloodGroup for item in bloodGroups track by item.bloodGroupId" >
+            			<option value="">--Blood Group--</option></select> </label>  
+                        </div>  
+                        
+                                  
+           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Your Mothertongue	  <select class="form-control" ng-model="motherTongue"  id="motherTongue" ng-options="item as item.language for item in languages track by item.languageId"  >
+            <option value="">--Mother Tongue--</option>
+         </select></label>
+                        </div>    
+                        </div>
+                        <div class="row"> 
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label>Your Caste <select class="form-control" ng-model="caste"  id="caste" ng-options="item as item.casteName for item in castes track by item.casteId" >
+            <option value="">--Caste--</option> </label>
+         </select>
+                        </div>                
+                        
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label> Your Religion<select class="form-control" ng-model="religion" id="religion" ng-options="item as item.religion for item in religions track by item.religionId"  >
+            <option value="">--Religion--</option>
+         </select></label>
+                        </div>             
+           </div>
+           
+           <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          	 Identification Mark<input type="text" ng-model="identificationMark" id="identificationMark" class="form-control"  placeholder="Identification Mark If any" />
+   		  </div>
+   		  </div>
+      <br />
+      <div class="row studentinfo"> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <h3> Parents Information</h3> </div> </div>
+  
+      					<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Father's Name <input type="text" ng-model="fatherName" id="fatherName" class="form-control"  placeholder="Enter Father Name"  /></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label>Father's Occupation <input type="text" ng-model="fatherOccupation" id="fatherOccupation"  class="form-control"  placeholder="Enter Occupation" /></label>  
+                        </div>
+       					</div>
+          <!--  Admission Date <input type="text" ng-model="admissionDate" id="admissionDate"  class="form-control"  placeholder="dd-MM-yyyy" style="width: 150px;display: inline-block;"/> -->
+          <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Mother's Name <input type="text" ng-model="motherName" id="motherName" class="form-control"  placeholder="Enter Mother Name"/></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label> Mother's Occupation <input type="text" ng-model="motherOccupation" id="motherOccupation" class="form-control"  placeholder="Enter Occupation"  /></label>  
+                        </div>
+          </div>  
+          <br />
+              <div class="row studentinfo"> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <h3> Communication Information</h3> </div> </div>
+  
+      					<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Father's Mobile No <input type="text" ng-model="fatherMobile" id="fatherMobile" class="form-control"  placeholder="Enter 10 Digit Mobile No"  maxlength="10"/></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label>Father's Email <input type="text" ng-model="fatherEmail" id="fatherEmail" class="form-control"  placeholder="Enter Email" /></label>  
+                        </div>
+       					</div>
+          <!--  Admission Date <input type="text" ng-model="admissionDate" id="admissionDate"  class="form-control"  placeholder="dd-MM-yyyy" style="width: 150px;display: inline-block;"/> -->
+          <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Mother's Mobile No <input type="text" ng-model="motherMobile" id="motherMobile"  class="form-control"  placeholder="Enter 10 Digit Mobile No" maxlength="10"/></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label> Mother's Email <input type="text" ng-model="motherEmail"  id="motherEmail" class="form-control"  placeholder="Enter Email" /></label>  
+                        </div>
+          </div>  
+           <br />
+              <div class="row studentinfo"> <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <h3> Address Information</h3> </div> </div>
+  
+      					<div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Address <input type="text" ng-model="address" id="address" class="form-control"  placeholder="Enter Address.." /></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label>Landmark <input type="text" ng-model="landmark"  id="landmark" class="form-control"  placeholder="Enter Landmark" /></label>  
+                        </div>
+       					</div>
+          <!--  Admission Date <input type="text" ng-model="admissionDate" id="admissionDate"  class="form-control"  placeholder="dd-MM-yyyy" style="width: 150px;display: inline-block;"/> -->
+          <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>City
+       <select class="form-control" ng-model="city" id="city" ng-options="item as item.city for item in cities track by item.cityId" >
+            <option value="">--Select City--</option>
+         </select></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label> State
+        <select class="form-control" ng-model="state" id="state" ng-options="item as item.state for item in states track by item.stateId" >
+            <option value="">--Select State--</option>
+         </select></label>  
+                        </div>
+          </div>  
+            <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <label>Pincode<input type="text" ng-model="pincode" id="pincode" class="form-control"  placeholder="Pincode" /></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label> Country
+         <select class="form-control" ng-model="country" id="country"  ng-options="item as item.country for item in countries track by item.countryId">
+            <option value="">--Select Country--</option>
+         </select></label>  
+                        </div>
+          </div>                
+        <br />
+      <div class="row">
+      <div style="margin-top: 15px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          	 <center>  <input ng-click="saveStudentData()" class="btn button btn-default" type="submit" value="Save Student Info"/> </center>  
+   		  </div>
+   		  </div>
+      
+      </div>
+      <div class="modal-footer" style="background-color: #36C6D3;">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+

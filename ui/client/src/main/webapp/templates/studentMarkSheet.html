@@ -1,0 +1,15 @@
+<div ng-controller="studentMarkSheetCtrl" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Student Mark Sheet</h1></div>
+    <select class="form-control" ng-model="examinationId"  id="examinationId"  ng-options="item as item[1] for item in examinations track by item[3]"  style="width: 180px;display: inline-block;">
+            <option value="">--Select Examination--</option>
+    </select> 
+    Class <input type="text" ng-model="schoolClassSection" ng-click="resetMarksheetScreen()" id="schoolClassSection" class="form-control"  placeholder="Start Typing..." style="width: 300px;display: inline-block;"/>
+    <span id="studentDropDown"></span>
+    
+     <br/><br/>
+  <span id="studentMarkSheetData"></span>
+ 
+</div>
+</div>
+

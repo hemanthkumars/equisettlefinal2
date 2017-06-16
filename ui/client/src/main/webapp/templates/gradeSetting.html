@@ -1,0 +1,14 @@
+<div ng-controller="gradeSettingController" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Grade Setting</h1></div>
+  <input type="text" ng-model="fromMarks" id="fromMarks"  class="form-control"  placeholder="From marks" style="width: 150px;display: inline-block;"/>
+  <input type="text" ng-model="toMarks"  class="form-control"  placeholder="To Marks" style="width: 150px;display: inline-block;"/>
+  <input type="text" ng-model="gradeLetter"  class="form-control"  placeholder="Grade letter" style="width: 150px;display: inline-block;"/>
+  <input type="text" ng-model="gradeDescription"  class="form-control"  placeholder="Description" style="width: 200px;display: inline-block;"/>
+  <button type="submit"  ng-click="saveGrade()" class="btn btn-default" style="width: 100px;display: inline-block;">Save</button>       
+  <br/><br/>
+  <span id="gradeData"></span>
+ 
+</div>
+</div>
+

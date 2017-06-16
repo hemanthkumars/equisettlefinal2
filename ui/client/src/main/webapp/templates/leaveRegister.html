@@ -1,0 +1,17 @@
+<div ng-controller="leaveRegisterCtrl" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Leave Register</h1></div>
+  Student Name<input type="text" ng-click="resetNameDaatInLeaveRegister()" ng-model="studentNameForLeaveRegister" id="studentNameForLeaveRegister" class="form-control"  placeholder="Student Name Start Typing...." style="width: 320px;display: inline-block;"/>
+ From Date <input type="text" ng-model="fromDateForLeave" id="fromDateForLeave" class="form-control"  placeholder="DD-MM-YYYY" style="width: 100px;display: inline-block;"/>
+  To Date<input type="text" ng-model="toDateForLeave" id="toDateForLeave" class="form-control"  placeholder="DD-MM-YYYY" style="width: 50px;display: inline-block;"/>
+  <select class="form-control"    ng-model="schoolSession"  id="schoolSession" ng-options="item as item.sessionName + ' ( ' + item.sessionTimings +' ) ' for item in schoolSessions track by item.schoolSessionId"  style="width: 180px;display: inline-block;">
+            <option value="">--Select Session--</option>
+   </select>
+    <textarea  id="leaveReason"  class="form-control" style="width: 400px;display: inline-block;height: 100px;" >
+    </textarea>
+  <button type="submit"  onclick="saveStudentLeave()" class="btn btn-default" style="width: 100px;display: inline-block;">Save</button>       
+  <span id="oldLeavesOfThisStudent"></span>
+ 
+</div>
+</div>
+

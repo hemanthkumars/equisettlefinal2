@@ -1,0 +1,83 @@
+<div ng-controller="feeCollectCtrl" class="page-content">
+<div class="container">
+   <div class="breadcrumbs"><h1>Fee Collection</h1></div>
+  Class <input type="text"  ng-model="fcSchoolClassSection" ng-click="resetDataFeeCollect1()" id="fcSchoolClassSection" class="form-control"  placeholder="Start Typing..." style="width: 300px;display: inline-block;"/>
+  OR Student Name <input type="text" ng-model="fcStudentName" ng-click="resetDataFeeCollect2()" id="fcStudentName" class="form-control"  placeholder="Start Typing..." style="width: 300px;display: inline-block;"/>
+  <br/>
+  <span id="studentsData" style="min-height: 500px;"></span>
+ 
+  <span id="studentFeeReceiptData"></span>
+  
+  <span id="printingData" style="display: none;"></span>
+  
+   <span id="receiptDetailPrintingAuto" style="display: none;"></span>
+  <div id="payFeeModal" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b><span id="studentDisplayInfo"></span></b></h4>
+      </div>
+      <div class="modal-body">
+        <span id="studentFeeDefinitionData"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <div id="feeSummaryModal" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b><span id="studentDisFeeSummary"></span></b></h4>
+      </div>
+      <div class="modal-body">
+        <span id="feeSummaryData"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+ <div id="receiptDetailsModal" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" ><b><span id="studentDisReceiptDetails"></span></b></h4>
+      </div>
+      <div class="modal-body">
+        <span id="receiptDetailsData" ></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  
+</div>
+
+<div id="ReceiptprintingDataComesHere"></div>
+
+<div id="FeeSummarprintingDataComesHere"></div>
+
+
+</div>
+

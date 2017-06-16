@@ -1,0 +1,41 @@
+<div ng-controller="studentFeeDueListCtrl" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Fee Due List</h1></div>
+  <!-- <input type="text" ng-model="order"  class="form-control"  placeholder="Code" style="width: 50px;display: inline-block;"/> -->
+  <h3><b>Grand Total Balance :  Rs {{balanceFees}}</b> </h3>
+  <br/><input type="button"  class='btn btn-primary' id="sendReminder" value="Send Reminder SMS" onclick="openreminderSmsModal()"/>
+  <span id="feeDueListData"></span>
+ 
+</div>
+ <div id="reminderSmsModal" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b>Fee Remider SMS</b></h4>
+      </div>
+      <div class="modal-body">
+        <select class="form-control" ng-model="templateName" id="templateName" ng-options="item as item.smsTemplateName for item in smsTemplates track by item.schoolSmsTemplateId"  style="width: 300px;display: inline-block;" ng-change="findTemplateDetails()">
+            <option value="">--Select Template--</option>
+      </select>
+      <br/>
+       {{header}}<input id="header" type="hidden" value="{{header}}" />
+  <textarea  id="message" onkeyup="calculateSMSCOunt()" class="form-control" style="width: 400px;display: inline-block;height: 100px;" >
+  </textarea>
+<!--   <input type="text" id="message" onkeyup="calculateSMSCOunt()" class="form-control" style="width: 400px;display: inline-block;height: 100px;"/> -->
+  {{footer}}<input id="footer" type="hidden" value="{{footer}}"/>
+  <br/> Sms Count<span id="smsCount"></span>
+  <button type="submit"  onclick="sendReminderSms()" id="sendReminderSmsButton" class="btn btn-default" style="width: 100px;display: inline-block;">Send SMS</button>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+

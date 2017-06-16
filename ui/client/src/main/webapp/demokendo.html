@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="http://demos.telerik.com/kendo-ui/panelbar/index">
+    <style>html { font-size: 14px; font-family: Arial, Helvetica, sans-serif; }</style>
+    <title></title>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.504/styles/kendo.material.mobile.min.css" />
+
+    <script src="https://kendo.cdn.telerik.com/2017.2.504/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.2.504/js/kendo.all.min.js"></script>
+</head>
+<body>
+<h2 style="margin-top: 0%;margin-left: 20%;">Project Schedule</h2><br/>
+        <div id="example" >
+                <ul id="panelbar" style="margin-left: 0px;width: 20%;">
+                <li class="k-state-active">
+                    <span class="k-link k-state-selected">Home</span>
+                </li>
+                <li>
+                    Project
+                    <ul>
+                        <li>Schedule</li>
+                        <li>
+                            Phase/Location
+                            
+                        </li>
+                    </ul>
+
+                </li>
+                <li>
+                    Queries
+                    
+                </li>
+                <li >
+                    Reports
+                </li>
+                 <li >
+                    Administration
+                </li>
+            </ul>
+           <button id="textButton1" class="k-primary">Save</button>
+            <button id="textButton2">Add</button>
+          <div id="grid"></div>
+          
+          
+            <style>
+                #panelbar {
+                    max-width: 400px;
+                    margin: 0 auto;
+                }                
+                .teamMate h2 {
+                    font-size: 1.4em;
+                    font-weight: normal;
+                    padding-top: 20px;
+                }
+                .teamMate p {
+                    margin: 0;
+                }
+                .teamMate img {
+                    display: inline-block;
+                    margin: 5px 15px 5px 5px;
+                    border: 1px solid #ccc;
+                    border-radius: 50%;
+                }
+                .details {
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            </style>
+            <script>
+                $(document).ready(function() {
+                    $("#panelbar").kendoPanelBar({
+                        expandMode: "single"
+                    });
+                });
+            </script>
+        </div>
+
+
+Mile Stone Details
+<label for="color">MileStone</label>
+            <input id="color" value="1" style="width: 20%;" /><br/>
+            <label >Original EST Date <input id="datepicker1" value="06/13/2017" title="datepicker" style="width: 20%" /></label><br/>
+            <label >Current EST  <input id="datepicker2"  value="06/13/2017" title="datepicker" style="width: 20%" /></label><br/>
+            <label >Actual Date <input id="datepicker3"  value="06/13/2017"  title="datepicker" style="width: 20%" /></label><br/>
+            Percent Complete<input type="text" value="100"/>
+ <script>
+                $(document).ready(function() {
+                	$("#datepicker1").kendoDatePicker();
+                	$("#datepicker2").kendoDatePicker();
+                	$("#datepicker3").kendoDatePicker();
+                	
+                    var data = [
+                        { text: "07- Start Con Plan", value: "1" },
+                        { text: "08- Start Con Plan", value: "2" },
+                        { text: "09- Start Con Plan", value: "3" }
+                    ];
+
+                    // create DropDownList from input HTML element
+                    $("#color").kendoDropDownList({
+                        dataTextField: "text",
+                        dataValueField: "value",
+                        dataSource: data,
+                        index: 0,
+                        change: onChange
+                    });
+
+                    // create DropDownList from select HTML element
+                    $("#size").kendoDropDownList();
+
+                    var color = $("#color").data("kendoDropDownList");
+
+                    color.select(0);
+                    var size = $("#size").data("kendoDropDownList");
+
+                    function onChange() {
+                    	alert("Milestone changed");
+                    };
+
+                    
+                    $("#grid").kendoGrid({
+                        dataSource: {
+                            type: "odata",
+                            transport: {
+                                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers"
+                            },
+                            pageSize: 20
+                        },
+                        height: 550,
+                        groupable: true,
+                        sortable: true,
+                        pageable: {
+                            refresh: true,
+                            pageSizes: true,
+                            buttonCount: 5
+                        },
+                        columns: [{
+                           
+                            field: "ContactName",
+                            title: "MileStone",
+                            width: 240
+                        }, {
+                            field: "ContactTitle",
+                            title: "Name",
+                            width: 200
+                        }, {
+                            field: "CompanyName",
+                            title: "Original EST date",
+                            width: 200
+                        }, {
+                            field: "Country",
+                            width: 100,
+                            title: "CurrentEST Date"
+                        },
+                        {
+                            field: "Country",
+                            width: 100,
+                            title: "Actual Date"
+                        },
+                        {
+                            field: "Country",
+                            width: 100,
+                            title: "Phase"
+                        }]
+                    });
+                    
+                    
+                    $("#textButton1").kendoButton();
+                    $("#textButton2").kendoButton();
+                    
+                });
+            </script>           
+              
+
+</body>
+</html>

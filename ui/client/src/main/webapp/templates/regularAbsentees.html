@@ -1,0 +1,11 @@
+<div ng-controller="regularAbsenteesCtrl" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Regular Absentees</h1></div>
+   
+  <select class="form-control"  ng-change="findRegularAbsentees()"   ng-model="schoolSession"  id="schoolSession" ng-options="item as item.sessionName + ' ( ' + item.sessionTimings +' ) ' for item in schoolSessions track by item.schoolSessionId"  style="width: 180px;display: inline-block;">
+            <option value="">--Select Session--</option>
+   </select>
+  <span id="regularAbsenteesFullData"></span>
+</div>
+</div>
+

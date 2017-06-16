@@ -1,0 +1,17 @@
+<div ng-controller="examTimeTableController" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Exam Time Table</h1></div>
+    <select class="form-control" ng-model="examinationId"  id="examinationId"  ng-options="item as item[1] for item in examinations track by item[3]"  style="width: 180px;display: inline-block;">
+            <option value="">--Select Examination--</option>
+    </select> 
+ <select class="form-control"  id="schoolClassId" ng-model="schoolClass" ng-options="item as item.className for item in schoolClasss track by item.schoolClassId" style="width: 200px;display: inline-block;">
+    <option value="">--Select Class--</option>
+  </select>      
+  <button type="submit"  ng-click="findExamTimeTable()" class="btn btn-default" style="width: 100px;display: inline-block;">Get Details</button>    
+    
+     <br/><br/>
+  <span id="examTimeTableData"></span>
+ 
+</div>
+</div>
+

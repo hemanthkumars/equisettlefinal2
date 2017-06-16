@@ -1,0 +1,27 @@
+<div ng-controller="expenseMgmtCtrl" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Expense Management</h1></div>
+   <div style="border: medium;background-color: red;">
+   Expense Type <select class="form-control" ng-model="expenseTypeId" id="expenseTypeId" ng-options="item as item[1] for item in schoolExpenseTypes track by item[0]"  style="width: 150px;display: inline-block;">
+            <option value="0">--Select Expense Type--</option>
+   </select>
+  
+  <input type="number" ng-model="expenseAmt" id="expenseAmt" class="form-control"  placeholder="Amount" style="width: 300px;display: inline-block;"/>
+ 
+  <button type="submit"  ng-click="saveExpenseData()" class="btn btn-default" style="width: 100px;display: inline-block;">Add Expense</button>
+  </div>       
+  <br/>
+  <br/>
+  <div style="border: medium;background-color: yellow;">
+  View Expenses
+  From Date<input type="text" ng-model="fromDateForExpense" id="fromDateForExpense"   class="form-control"  placeholder="DD-MM-YYYY" style="width: 180px;display: inline-block;"/>
+  To Date <input type="text" ng-model="toDateForExpense" id="toDateForExpense"   class="form-control"  placeholder="DD-MM-YYYY" style="width: 180px;display: inline-block;"/>
+  <button type="submit"  ng-click="findAllExpenseData()" class="btn btn-default" style="width: 100px;display: inline-block;">Get Details</button>
+  </div>
+  <h1> Total Expense : {{expenseTotal}}</h1>    
+  <span id="expenseData"></span>
+   
+</div>
+
+</div>
+

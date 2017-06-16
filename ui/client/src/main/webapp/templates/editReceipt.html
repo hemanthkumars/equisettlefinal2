@@ -1,0 +1,9 @@
+<div ng-controller="editReceiptCtrl" class="page-content">
+<div class="container">
+  <h2>Edit Receipt</h2>
+  Receipt No<input type="text" ng-model="receiptNo"  class="form-control"  placeholder="Enter Receipt  No" style="width: 300px;display: inline-block;"/>
+  <button type="submit"  ng-click="fetchReceiptDetailsForEdition()" class="btn btn-default" style="width: 100px;display: inline-block;">Get Details</button>       
+  <span id="receiptDetailsForEdition"></span>
+</div>
+</div>
+

@@ -1,0 +1,53 @@
+<div ng-controller="scheduleExamController" class="page-content">
+<div class="container">
+  <div class="breadcrumbs"><h1>Schedule Examination</h1></div>
+  <select class="form-control" ng-model="examinationId"  id="examinationId" onchange="fetchClassExamData()" ng-options="item as item[1] for item in examinations track by item[3]"  style="width: 180px;display: inline-block;">
+            <option value="">--Select Examination--</option>
+    </select>  <br/><br/>
+  <span id=classSectionForExam></span>
+   <div id="scheduleExamModal" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b><span id="scheduleExamModalHeader"></span></b></h4>
+      </div>
+      <div class="modal-body">
+        <span id="scheduleExamModalData"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="addExamDateModal" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><b>Add Exam Date</b></h4>
+      </div>
+      <div class="modal-body">
+        <input type="text"  id="addSingleExamDate"  class="form-control"  placeholder="DD-MM-YYYY" style="width: 180px;display: inline-block;"/>
+        <button type="submit"  onclick="addExamDate()" class="btn btn-default" style="width: 100px;display: inline-block;">Add</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ 
+</div>
+
+ 
+</div>
+
