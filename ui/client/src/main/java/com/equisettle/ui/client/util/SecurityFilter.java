@@ -52,11 +52,12 @@ public class SecurityFilter implements Filter{
 				||servletPath.equals("")){
 			chain.doFilter(request, response);
 		}else if(userContext==null){
-			jsonObject.put("error", "true");
-			jsonObject.put("errorCode", "1");
-			jsonObject.put("message", "Your Session has Expired Please Login again!");
-			response2.setContentType("json");
-			response2.getWriter().print(jsonObject.toString());
+			//jsonObject.put("error", "true");
+			//jsonObject.put("errorCode", "1");
+			//jsonObject.put("message", "Your Session has Expired Please Login again!");
+			//response2.setContentType("json");
+			//response2.getWriter().print(jsonObject.toString());
+			chain.doFilter(request, response);
 		}else{
 			chain.doFilter(request, response);
 		}

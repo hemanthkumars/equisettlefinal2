@@ -1,0 +1,32 @@
+- open cmd
+-  paste this path 
+cd C:\Users\USER\Documents\Aptananew\EquiSettle\equisettlefinal2
+
+- press enter
+
+- mvn clean install -DskipTests=true
+
+- cd ui
+
+-cd client
+
+- mvn tomcat:run -Dmaven.tomcat.port=8555
+
+- Open browser 
+
+-localhost:8555/client/
+
+- after working how to commit?
+
+  First- Close all the command prompt window
+
+ 1. open new command prompt
+ 2. type cd C:\Users\USER\Documents\Aptananew\EquiSettle\equisettlefinal2
+
+ 3. mvn clean (type enter)
+
+ 4. open git hub
+ 5. click changes 
+ 6. Select only files which you have worked
+ 7. Put some comment and click commit 
+ 8 After commit completes click on sync

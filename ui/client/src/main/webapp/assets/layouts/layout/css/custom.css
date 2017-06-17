@@ -1,6 +1,47 @@
 /* here you can put your own css to customize and override the theme */
 
 
+.page-header.navbar .page-logo .logo-default {
+	margin-top:10px;
+}
+
+
+/* here you can put your own css to customize and override the theme */
+
+.border-grey-steell{
+	margin-top: 10px;
+    padding-top: 10px;
+    border-top: #959595 1px solid;
+    clear: both;
+    line-height: 1.7em;
+}
+
+.border-grey-steell1{
+	margin-top: 10px;
+    padding-top: 10px;
+    
+    clear: both;
+    
+}
+
+.my-title h2 {
+	margin-top:0px;
+	font-size:18px;
+	font-weight:600;
+	color:#959595;
+	display:inline-block;
+} 
+
+.mt-author-datetime {
+	
+	font-size:13px;
+}
+
+.mynews {
+	background-color:#f7f7f7;
+	padding:15px;
+	margin-top:10px;
+}
 .mt-element-step .step-background-thin .mt-step-number {
 font-size:105px;
 }
