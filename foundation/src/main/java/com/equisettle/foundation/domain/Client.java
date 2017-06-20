@@ -61,4 +61,17 @@ public class Client {
 			return logins.get(0);
 		}
 	}
+	
+	public static Client  findUserByUserName(String userName){
+		List<Client> logins=entityManager().createQuery("SELECT sl FROM Client sl WHERE sl.userName='"+userName+"' "
+				+ "").getResultList();
+		if(logins.isEmpty()){
+			return null;
+		}else{
+			return logins.get(0);
+		}
+	}
+	
+	
+	
 }
