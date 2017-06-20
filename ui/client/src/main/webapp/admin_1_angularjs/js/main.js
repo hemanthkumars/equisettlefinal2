@@ -102,13 +102,13 @@ MetronicApp.controller('FooterController', ['$scope', function($scope) {
 /* Setup Rounting For All Pages */
 MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     // Redirect any unmatched url
-    $urlRouterProvider.otherwise("/dashboard.html");  
+    $urlRouterProvider.otherwise("/dashboard");  
 
     $stateProvider
 
         // Dashboard
         .state('dashboard', {
-            url: "/dashboard.html",
+            url: "/dashboard",
             templateUrl: "views/dashboard.html",            
             data: {pageTitle: 'Admin Dashboard Template'},
             controller: "DashboardController",
@@ -152,7 +152,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
 
         // AngularJS plugins
         .state('fileupload', {
-            url: "/file_upload.html",
+            url: "/file_upload",
             templateUrl: "views/file_upload.html",
             data: {pageTitle: 'AngularJS File Upload'},
             controller: "GeneralPageController",
@@ -175,7 +175,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
 
         // UI Select
         .state('uiselect', {
-            url: "/ui_select.html",
+            url: "/ui_select",
             templateUrl: "views/ui_select.html",
             data: {pageTitle: 'AngularJS Ui Select'},
             controller: "UISelectController",
@@ -200,7 +200,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
 
         // UI Bootstrap
         .state('uibootstrap', {
-            url: "/ui_bootstrap.html",
+            url: "/ui_bootstrap",
             templateUrl: "views/ui_bootstrap.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
@@ -219,7 +219,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
       
 		// Request Mediator
         .state('requestmediator', {
-            url: "/requestmediator.html",
+            url: "/requestmediator",
             templateUrl: "views/requestmediator.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
@@ -237,7 +237,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         
         // Home
         .state('home', {
-            url: "/home.html",
+            url: "/home",
             templateUrl: "views/home.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
@@ -255,7 +255,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         
          // Add Case
         .state('addcase', {
-            url: "/addcase.html",
+            url: "/addcase",
             templateUrl: "views/addcase.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
@@ -292,7 +292,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         
          // Case Details
         .state('casedetails', {
-            url: "/casedetails.html",
+            url: "/casedetails",
             templateUrl: "views/casedetails.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
@@ -311,7 +311,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         
          // Case on Me
         .state('caseonme', {
-            url: "/caseonme.html",
+            url: "/caseonme",
             templateUrl: "views/caseonme.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
@@ -347,7 +347,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         
        // Final Offer Arbitration
         .state('finalofferarbitration', {
-            url: "/finalofferarbitration.html",
+            url: "/finalofferarbitration",
             templateUrl: "views/finalofferarbitration.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
@@ -367,7 +367,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
           // FOA Certificate
         .state('foacert', {
             url: "/foacert.html",
-            templateUrl: "views/foacert.html",
+            templateUrl: "views/foacert",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
             resolve: {
@@ -385,7 +385,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         
           // Offer Accepted
         .state('offeraccepted', {
-            url: "/offeraccepted.html",
+            url: "/offeraccepted",
             templateUrl: "views/offeraccepted.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
@@ -404,7 +404,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         // Tree View
         .state('tree', {
             url: "/tree",
-            templateUrl: "views/tree.html",
+            templateUrl: "views/tree",
             data: {pageTitle: 'jQuery Tree View'},
             controller: "GeneralPageController",
             resolve: {
