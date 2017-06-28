@@ -225,12 +225,31 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                     return ""; }
             }
         })
-        
       
 		// Request Mediator
         .state('requestmediator', {
             url: "/requestmediator",
             templateUrl: "views/requestmediator.html",
+            data: {pageTitle: 'AngularJS UI Bootstrap'},
+            controller: "GeneralPageController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load([{
+                        name: 'MetronicApp',
+                        files: [
+                            'js/controllers/GeneralPageController.js'
+                        ] 
+                    }]);
+                }] ,
+                message: function(RefreshHandling){
+                    return ""; }
+            }
+        })
+        
+    		// Select Mediators
+        .state('selectmediators', {
+            url: "/selectmediators",
+            templateUrl: "views/selectmediators.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
             resolve: {
@@ -351,7 +370,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         
             // FAQs
         .state('faqs', {
-            url: "/faqs.html",
+            url: "/faqs",
             templateUrl: "views/faqs.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
@@ -392,7 +411,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         
           // FOA Certificate
         .state('foacert', {
-            url: "/foacert.html",
+            url: "/foacert",
             templateUrl: "views/foacert",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
             controller: "GeneralPageController",
