@@ -1,5 +1,6 @@
 package com.equisettle.ui.client.controller;
 import com.equisettle.foundation.client.EncryptAndDecrypt;
+import com.equisettle.foundation.domain.Case;
 import com.equisettle.foundation.domain.Client;
 import com.equisettle.foundation.domain.Country;
 import com.equisettle.ui.client.util.SessionManager;
@@ -26,29 +27,55 @@ public class ClientController {
 	 @ResponseBody
 	 public String login(HttpServletRequest request,HttpServletResponse reresponse)  {
 		JSONObject input= new JSONObject(request.getParameter("input"));
-		String userName=input.getString("userName");
-		String password=input.getString("password");
-		password=EncryptAndDecrypt.encrypt(password);
-		Client cleint=Client.authenticateLogin(userName, password);
 		JSONObject output= new JSONObject();
-		if(cleint==null){
-			output.put("error", "true");
-			output.put("message", "Invalid Username or Password");
-		}else{
-			output.put("error", "false");
-			output.put("message", "Login Successfull");
-			UserContext userContext= new UserContext();
-			userContext.setClient(cleint);
-			SessionManager.putUserContext(request, userContext);
-			output.put("JSESSIONID", request.getSession().getId());
-			output.put("clientName",cleint.getFirstName());
+		try {
+			String userName=input.getString("userName");
+			String password=input.getString("password");
+			password=EncryptAndDecrypt.encrypt(password);
+			Client cleint=Client.authenticateLogin(userName, password);
+		
+			if(cleint==null){
+				output.put("error", "true");
+				output.put("message", "Invalid Username or Password");
+			}else{
+				output.put("error", "false");
+				output.put("message", "Login Successfull");
+				UserContext userContext= new UserContext();
+				userContext.setClient(cleint);
+				SessionManager.putUserContext(request, userContext);
+				output.put("JSESSIONID", request.getSession().getId());
+				output.put("clientName",cleint.getFirstName().toUpperCase());
+				
+			}
 			
+			
+			
+			return output.toString();
+		} catch (Exception e) {
+			output.put("error", "true");
+			output.put("message", "Some error  ");
+			return output.toString();
 		}
-		
-		
-		
-		return output.toString();
 	}
+	
+	@RequestMapping(value = "/invalidateSession", method = RequestMethod.POST,produces = "application/json")
+	 @ResponseBody
+	 public String invalidateSession(HttpServletRequest request,HttpServletResponse reresponse)  {
+		JSONObject input= new JSONObject(request.getParameter("input"));
+		JSONObject output= new JSONObject();
+		request.getSession().invalidate();
+		
+		try {
+			output.put("error", "false");
+			output.put("message", "Some error  ");
+			return output.toString();
+		} catch (Exception e) {
+			output.put("error", "true");
+			output.put("message", "Some error  ");
+			return output.toString();
+		}
+	}
+	
 	
 	 /*var input={"fullname":$("#fullname").val(),
 	    		"email":$("#email").val(),
@@ -80,7 +107,7 @@ public class ClientController {
 			
 			if(cleint!=null){
 				output.put("error", "true");
-				output.put("message", usernameForCreating+" "+" is already taken !! please try some other username");
+				output.put("message", "Username : "+ usernameForCreating+" "+" is already taken !! please try some other username");
 				return output.toString();
 			}else{
 				Client client=new Client();
@@ -112,9 +139,55 @@ public class ClientController {
 			return output.toString();
 		}
 		
-		
-		
-		
+	}
+	
+	
+	/*var input={"caseTypeId":caseTypeId,
+			 "caseTitle":caseTitle,
+			 "caseDescription":caseDescription,
+			 "address":address,
+			 "otherPartyName":otherPartyName,
+			 "otherPartyMobile":otherPartyMobile,
+			 "otherPartyEmail":otherPartyEmail
+	    		};*/
+	
+	@RequestMapping(value = "/createNewCase", method = RequestMethod.POST,produces = "application/json")
+	 @ResponseBody
+	 public String createNewCase(HttpServletRequest request,HttpServletResponse reresponse)  {
+		JSONObject input= new JSONObject(request.getParameter("input"));
+		JSONObject output= new JSONObject();
+		try {
+			Integer caseTypeId=input.getInt("caseTypeId");
+			String caseTitle=input.getString("caseTitle");
+			String caseDescription=input.getString("caseDescription");
+			String address=input.getString("address");
+			String otherPartyName=input.getString("otherPartyName");
+			String otherPartyMobile=input.getString("otherPartyMobile");
+			String otherPartyEmail=input.getString("otherPartyEmail");
+			
+			UserContext userContext=SessionManager.getUserContext(request);
+			Case case1= new Case();
+			case1.setAuditCreatedDtTime(new Date(System.currentTimeMillis()));
+			case1.setCaseAddress(address);
+			case1.setCaseDescription(caseDescription);
+			case1.setCaseInitiatedClientId(userContext.getClient());
+			Client client= new Client();
+			
+			
+			//case1.setCaseOnClientId();
+			
+			
+			
+				output.put("error", "false");
+				output.put("message", "User successfully created . Please login now" );
+				return output.toString();
+			
+				
+		} catch (Exception e) {
+			output.put("error", "true");
+			output.put("message", "Input error" );
+			return output.toString();
+		}
 		
 	}
 	

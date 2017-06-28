@@ -34,55 +34,56 @@
                                        	<div class="form-group">
                                                 <label class=" col-lg-3 col-md-3 control-label">Select Case Type</label>
                                               <div class="col-md-9 col-lg-9" >
-                                                    <select class="form-control">
-                                                    	<option>--Select Case Type--</option>
-                                                        <option>Banking</option>
-                                                        <option>Civil Law</option>
-                                                        <option>Consumer Matter</option>
-                                                        <option>Criminal Case</option>
-                                                        <option>Matrimonial Case</option>
-                                                        <option>Property Matter</option>
-                                                        <option>Rental Matter</option>
-                                                        <option>Others</option>
+                                                    <select class="form-control" id="caseTypeId">
+                                                    	<option value="">--Select Case Type--</option>
+                                                        <option value="1">Banking</option>
+                                                        <option value="2">Civil Law</option>
+                                                        <option value="3">Consumer Matter</option>
+                                                        <option value="4">Criminal Case</option>
+                                                        <option value="5">Matrimonial Case</option>
+                                                        <option value="6">Property Matter</option>
+                                                        <option value="7">Rental Matter</option>
+                                                        <option value="8">Others</option>
                                                        </select>
                                                 </div>
                                                 <label class="col-md-3 control-label">Case Title</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" placeholder="Enter Title">
+                                                    <input type="text" class="form-control" id="caseTitle"   placeholder="Enter Title">
                                                 </div>
                                                 <label class="col-md-3 control-label">Case Description</label>
                                                 <div class="col-md-9">
-                                                    <textarea class="form-control" placeholder="A brief note" ></textarea>
+                                                    <textarea class="form-control" placeholder="A brief note" id="caseDescription"></textarea>
                                                 </div>
                                                 <label class="col-md-3 control-label">Upload Files</label>
                                                 <div class="col-md-9 margin-bottom-10">
-                                                    <input type="file" name="files[]" multiple=""> </span>
+                                                    <input type="file" name="files[]" multiple="" id="file"> </span>
                                         <button type="submit" class="btn blue start">
                                             <i class="fa fa-upload"></i>
                                             <span class="upbut"> Start upload </span>
                                         </button>
                                                 </div>
+                                                 <label class="col-md-12 control-label">Provide The Particular Of Other Party</label>
                                                 <label class="col-md-3 control-label">Address</label>
                                                 <div class="col-md-9">
-                                                    <textarea class="form-control" placeholder="Enter Address" ></textarea>
+                                                    <textarea class="form-control" placeholder="Enter Address" id="address"></textarea>
                                                 </div>
                                                 
-                                                <label class="col-md-12 control-label">Provide The Particular Of Other Party</label>
+                                               
                                                 <label class="col-md-3 control-label">Person Name</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" placeholder="Enter Name">
+                                                    <input type="text" class="form-control" placeholder="Enter Name" id="otherPartyName">
                                                 </div>
                                                 <label class="col-md-3 control-label">Mobile Number</label>
                                                 <div class="col-md-9">
-                                                    <input type="number" class="form-control" placeholder="Enter Number">
+                                                    <input type="number" class="form-control" placeholder="Enter Number" id="otherPartyMobile">
                                                 </div>
                                                 <label class="col-md-3 control-label">Email Address</label>
                                                 <div class="col-md-9">
-                                                    <input type="email" class="form-control" placeholder="Enter Email">
+                                                    <input type="email" class="form-control" placeholder="Enter Email" id="otherPartyEmail">
                                                 </div>
                                                 <label class="col-md-3 control-label"></label>
                                                 <div class="col-md-9 margin-top-20">
-                                                   <button type="submit" class="btn btn-large green"><i class="fa fa-paper-plane"></i>
+                                                   <button type="submit" id="addCaseButton" ng-click="addCase()" class="btn btn-large green"><i class="fa fa-paper-plane"></i>
                                             <span class="upbut"> Add Case </span></button>
                                                 </div>
                                                  

@@ -53,7 +53,7 @@ privileged aspect CaseDataOnDemand_Roo_DataOnDemand {
     
     public void CaseDataOnDemand.setAuditCreatedDtTime(Case obj, int index) {
         Calendar auditCreatedDtTime = Calendar.getInstance();
-        obj.setAuditCreatedDtTime(auditCreatedDtTime);
+       // obj.setAuditCreatedDtTime(auditCreatedDtTime);
     }
     
     public void CaseDataOnDemand.setCaseAddress(Case obj, int index) {

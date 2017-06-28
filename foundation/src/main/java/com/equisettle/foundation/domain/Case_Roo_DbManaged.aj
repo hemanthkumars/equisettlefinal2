@@ -68,10 +68,7 @@ privileged aspect Case_Roo_DbManaged {
     @Column(name = "MAX_NEGOTIATION_ATTEMPTS_ALLOWED")
     private Integer Case.maxNegotiationAttemptsAllowed;
     
-    @Column(name = "AUDIT_CREATED_DT_TIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "MM")
-    private Calendar Case.auditCreatedDtTime;
+    
     
     public Set<CaseDocument> Case.getCaseDocuments() {
         return caseDocuments;
@@ -177,12 +174,5 @@ privileged aspect Case_Roo_DbManaged {
         this.maxNegotiationAttemptsAllowed = maxNegotiationAttemptsAllowed;
     }
     
-    public Calendar Case.getAuditCreatedDtTime() {
-        return auditCreatedDtTime;
-    }
-    
-    public void Case.setAuditCreatedDtTime(Calendar auditCreatedDtTime) {
-        this.auditCreatedDtTime = auditCreatedDtTime;
-    }
     
 }

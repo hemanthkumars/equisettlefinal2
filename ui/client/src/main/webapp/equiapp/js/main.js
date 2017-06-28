@@ -127,7 +127,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/DashboardController.js',
                         ] 
                     });
-                }]
+                }],
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
 
@@ -146,7 +148,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/BlankController.js'
                         ] 
                     });
-                }]
+                }],
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
 
@@ -169,7 +173,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ]
                     }]);
-                }]
+                }],
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
 
@@ -194,7 +200,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/UISelectController.js'
                         ] 
                     }]);
-                }]
+                }],
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
 
@@ -212,7 +220,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }] ,
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
         
@@ -231,7 +241,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }],
+                message: function(RefreshHandling){
+                    return ""; } 
             }
         })
         
@@ -249,7 +261,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }] ,
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
         
@@ -258,7 +272,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             url: "/addcase",
             templateUrl: "views/addcase.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
-            controller: "GeneralPageController",
+            controller: "caseController",
             resolve: {
                 deps: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load([{
@@ -267,7 +281,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }] ,
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
         
@@ -285,7 +301,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }] ,
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
         
@@ -304,7 +322,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }],
+                message: function(RefreshHandling){
+                    return ""; } 
             }
         })
         
@@ -323,7 +343,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }],
+                message: function(RefreshHandling){
+                    return ""; } 
             }
         })
         
@@ -341,7 +363,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }],
+                message: function(RefreshHandling){
+                    return ""; } 
             }
         })
         
@@ -359,7 +383,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }] ,
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
         
@@ -378,7 +404,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }],
+                message: function(RefreshHandling){
+                    return ""; } 
             }
         })
         
@@ -397,7 +425,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }] ,
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
         
@@ -420,7 +450,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }] ,
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })     
 
@@ -456,7 +488,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }],
+                message: function(RefreshHandling){
+                    return ""; } 
             }
         })        
 
@@ -489,7 +523,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }],
+                message: function(RefreshHandling){
+                    return ""; } 
             }
         })
 
@@ -518,7 +554,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ] 
                     }]);
-                }] 
+                }] ,
+                message: function(RefreshHandling){
+                    return ""; }
             }
         }) 
 
@@ -544,7 +582,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ]
                     });
-                }]
+                }],
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
 
@@ -572,7 +612,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/GeneralPageController.js'
                         ]
                     });
-                }]
+                }],
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
 
@@ -599,7 +641,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/UserProfileController.js'
                         ]                    
                     });
-                }]
+                }],
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
 
@@ -650,7 +694,9 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             'js/controllers/TodoController.js'  
                         ]                    
                     });
-                }]
+                }],
+                message: function(RefreshHandling){
+                    return ""; }
             }
         })
 
@@ -661,3 +707,37 @@ MetronicApp.run(["$rootScope", "settings", "$state", function($rootScope, settin
     $rootScope.$state = $state; // state to be accessed from view
     $rootScope.$settings = settings; // state to be accessed from view
 }]);
+
+
+var urlappend="";
+var JSESSIONID="";
+MetronicApp.service('RefreshHandling', function($http, $state, $rootScope,$window,$timeout){
+	toastr.info("referesh handling");
+	$rootScope.validateSession=function(data){
+		if(data.error=="true"){
+			if(data.errorCode!=undefined){
+				if(data.errorCode=="1"){
+					toastr.error("Sorry Your Has Expired.Please Log In Again!");
+					location.href="login.html"
+				}
+			}
+		}
+	};
+	
+	   $rootScope.JSESSIONID =  $window.localStorage.getItem('JSESSIONID');
+	   $rootScope.clientName =  $window.localStorage.getItem('clientName');
+	  
+	   urlappend=$rootScope.urlappend;
+	   JSESSIONID=$rootScope.JSESSIONID;
+	   toastr.info(JSESSIONID);
+	   var currentLocation = window.location;
+	   currentLocation=currentLocation.toString();
+	 
+	   
+	//   $timeout(enableCalendar(),0);
+	   
+
+})
+
+var urlappend2="http://localhost:8555/client/"
+

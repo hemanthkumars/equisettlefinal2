@@ -35,29 +35,28 @@ public class SecurityFilter implements Filter{
 		UserContext userContext=SessionManager.getUserContext(request2);
 		String servletPath=request2.getServletPath();
 		if(servletPath.startsWith("/client/authenticateLogin")
-				|| servletPath.equals("/index.html")
-				||servletPath.equals("/indexMain.html")
-				||servletPath.equals("/indexNew.html")
-				||servletPath.equals("/indexNew2.html")
-				||servletPath.startsWith("/libs")
-				||servletPath.startsWith("/js")
-				||servletPath.startsWith("/styles")
-				||servletPath.startsWith("/templates")
-				||servletPath.startsWith("/img")
-				||servletPath.startsWith("/fonts")
+				|| servletPath.equals("/equiapp/index.html")
+				||servletPath.equals("/equiapp/indexMain.html")
+				||servletPath.startsWith("/equiapp/libs")
+				||servletPath.startsWith("/equiapp/js")
+				||servletPath.startsWith("/equiapp/styles")
+				||servletPath.startsWith("/equiapp/views")
+				||servletPath.startsWith("/equiapp/tpl")
+				||servletPath.startsWith("/equiapp/login.html")
 				||servletPath.startsWith("/css")
 				||servletPath.startsWith("/images")
 				||servletPath.startsWith("/assets")
+				||servletPath.startsWith("/client/createAccount")
 				||servletPath.startsWith("/demokendo.html")
 				||servletPath.equals("")){
 			chain.doFilter(request, response);
 		}else if(userContext==null){
-			//jsonObject.put("error", "true");
-			//jsonObject.put("errorCode", "1");
-			//jsonObject.put("message", "Your Session has Expired Please Login again!");
-			//response2.setContentType("json");
-			//response2.getWriter().print(jsonObject.toString());
-			chain.doFilter(request, response);
+			jsonObject.put("error", "true");
+			jsonObject.put("errorCode", "1");
+			jsonObject.put("message", "Your Session has Expired Please Login again!");
+			response2.setContentType("json");
+			response2.getWriter().print(jsonObject.toString());
+			//chain.doFilter(request, response);
 		}else{
 			chain.doFilter(request, response);
 		}
