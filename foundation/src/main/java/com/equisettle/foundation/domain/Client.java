@@ -26,8 +26,23 @@ public class Client {
 	    @Column(name = "AUDIT_CREATED_DT_TIME")
 	    private Date auditCreatedDtTime;
 	    
+	    @Column(name = "MOBILE_NO")
+	    private String mobileNo;
+	    
 	    
 	
+	public String getMobileNo() {
+			return mobileNo;
+		}
+
+
+
+		public void setMobileNo(String mobileNo) {
+			this.mobileNo = mobileNo;
+		}
+
+
+
 	public Date getLastLoggedIn() {
 			return lastLoggedIn;
 		}
@@ -53,7 +68,7 @@ public class Client {
 
 
 	public static Client  authenticateLogin(String userName,String password){
-		List<Client> logins=entityManager().createQuery("SELECT sl FROM Client sl WHERE sl.userName='"+userName+"' "
+		List<Client> logins=entityManager().createQuery("SELECT sl FROM Client sl WHERE sl.email='"+userName+"' "
 				+ "  AND sl.password='"+password+"' ").getResultList();
 		if(logins.isEmpty()){
 			return null;
@@ -73,7 +88,7 @@ public class Client {
 	}
 	
 	public static Client  findUserByEmail(String email){
-		List<Client> logins=entityManager().createQuery("SELECT sl FROM Client sl WHERE sl.userName='"+email+"' "
+		List<Client> logins=entityManager().createQuery("SELECT sl FROM Client sl WHERE sl.email='"+email+"' "
 				+ "").getResultList();
 		if(logins.isEmpty()){
 			return null;

@@ -1,5 +1,6 @@
 package com.equisettle.foundation.domain;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 
@@ -27,6 +28,19 @@ public class Case {
 	}
 	
 	
+	public static List<Case>  findCaseByInitiatedClient(Integer clientId){
+		List<Case> logins=entityManager().createQuery("SELECT sl FROM Case sl WHERE sl.caseInitiatedClientId.clientId="+clientId+" "
+				).getResultList();
+		
+			return logins;
+	}
+	
+	public static List<Case>  findCaseByOnClient(Integer clientId){
+		List<Case> logins=entityManager().createQuery("SELECT sl FROM Case sl WHERE sl.caseOnClientId.clientId="+clientId+" "
+				).getResultList();
+		
+			return logins;
+	}
 	
 	
 	

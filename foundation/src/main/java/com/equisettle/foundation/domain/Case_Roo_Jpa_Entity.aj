@@ -15,7 +15,7 @@ privileged aspect Case_Roo_Jpa_Entity {
     
     declare @type: Case: @Entity;
     
-    declare @type: Case: @Table(name = "case");
+    declare @type: Case: @Table(name = "equisettle_case");
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

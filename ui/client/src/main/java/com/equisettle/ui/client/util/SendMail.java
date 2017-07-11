@@ -56,7 +56,7 @@ public class SendMail implements Runnable{
         Session session = Session.getInstance(props, null);
         Message msg = new MimeMessage(session);
         try {
-			msg.setFrom(new InternetAddress("leokidsbangalore@gmail.com"));
+			msg.setFrom(new InternetAddress("equisettle@gmail.com"));
         msg.setRecipients(Message.RecipientType.TO,
         InternetAddress.parse(recepients.get(0), false));
         msg.setSubject(subject);
@@ -64,7 +64,7 @@ public class SendMail implements Runnable{
         msg.setSentDate(new Date());
         SMTPTransport t =
             (SMTPTransport)session.getTransport("smtps");
-        t.connect("smtp.mailgun.com", "postmaster@sandboxe19f77c38c6a4faf9fc31b1ada8461cd.mailgun.org", "a0dbf999111b963805b2607defc98e83");
+        t.connect("smtp.mailgun.com", "postmaster@sandbox99efa7b94c5f4ba5b303d31f68a12155.mailgun.org", "1df5c57695f11bf2a6c632d7a217c5df");
         t.sendMessage(msg, msg.getAllRecipients());
         System.out.println("Response: " + t.getLastServerResponse());
         t.close();

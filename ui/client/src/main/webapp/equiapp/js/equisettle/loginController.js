@@ -40,12 +40,21 @@ function createAccount(){
 	var city=$("#city").val();
 	var countryCode=$("#countryCode").val();
 	var usernameForCreating=$("#usernameForCreating").val();
+	usernameForCreating="";
 	var pwdForCreating=$("#register_password").val();
 	var rpwdForCreating=$("#rpwdForCreating").val();
+	var mobileNo=$("#mobileNo").val();
 	if(fullname=="" || fullname ==null){
 		toastr.error("Please enter your name to register");
 		return;
 	}
+	
+	if(mobileNo=="" || mobileNo ==null){
+		toastr.error("Please enter your  mobile no");
+		return;
+	}
+	
+	
 	
 	if(email=="" || email ==null){
 		toastr.error("Please enter email to  register");
@@ -63,10 +72,10 @@ function createAccount(){
 		toastr.error("Please Select the country");
 		return;
 	}
-	if(usernameForCreating=="" || usernameForCreating ==null){
+	/*if(usernameForCreating=="" || usernameForCreating ==null){
 		toastr.error("Please enter the username");
 		return;
-	}
+	}*/
 	if(pwdForCreating=="" || pwdForCreating ==null){
 		toastr.error("Please enter desired password");
 		return;

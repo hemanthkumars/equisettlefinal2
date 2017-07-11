@@ -311,7 +311,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             url: "/casebyme",
             templateUrl: "views/casebyme.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
-            controller: "GeneralPageController",
+            controller: "caseByMeController",
             resolve: {
                 deps: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load([{
@@ -332,7 +332,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             url: "/casedetails",
             templateUrl: "views/casedetails.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
-            controller: "GeneralPageController",
+            controller: "caseDetailController",
             resolve: {
                 deps: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load([{
@@ -353,7 +353,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             url: "/caseonme",
             templateUrl: "views/caseonme.html",
             data: {pageTitle: 'AngularJS UI Bootstrap'},
-            controller: "GeneralPageController",
+            controller: "caseOnMeController",
             resolve: {
                 deps: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load([{
@@ -730,6 +730,7 @@ MetronicApp.run(["$rootScope", "settings", "$state", function($rootScope, settin
 
 var urlappend="";
 var JSESSIONID="";
+var currentCaseId=0;
 MetronicApp.service('RefreshHandling', function($http, $state, $rootScope,$window,$timeout){
 	toastr.info("referesh handling");
 	$rootScope.validateSession=function(data){
@@ -745,6 +746,8 @@ MetronicApp.service('RefreshHandling', function($http, $state, $rootScope,$windo
 	
 	   $rootScope.JSESSIONID =  $window.localStorage.getItem('JSESSIONID');
 	   $rootScope.clientName =  $window.localStorage.getItem('clientName');
+	   
+	   currentCaseId=$window.localStorage.getItem('currentCaseId');
 	  
 	   urlappend=$rootScope.urlappend;
 	   JSESSIONID=$rootScope.JSESSIONID;

@@ -46,7 +46,7 @@ privileged aspect CaseNegotiationDataOnDemand_Roo_DataOnDemand {
     
     public void CaseNegotiationDataOnDemand.setAuditCreatedDtTime(CaseNegotiation obj, int index) {
         Calendar auditCreatedDtTime = Calendar.getInstance();
-        obj.setAuditCreatedDtTime(auditCreatedDtTime);
+      //  obj.setAuditCreatedDtTime(auditCreatedDtTime);
     }
     
     public void CaseNegotiationDataOnDemand.setCaseDocumentUrl(CaseNegotiation obj, int index) {
@@ -59,12 +59,12 @@ privileged aspect CaseNegotiationDataOnDemand_Roo_DataOnDemand {
     
     public void CaseNegotiationDataOnDemand.setCaseNegotiationSentDate(CaseNegotiation obj, int index) {
         Calendar caseNegotiationSentDate = Calendar.getInstance();
-        obj.setCaseNegotiationSentDate(caseNegotiationSentDate);
+        //obj.setCaseNegotiationSentDate(caseNegotiationSentDate);
     }
     
     public void CaseNegotiationDataOnDemand.setNegotiationAmount(CaseNegotiation obj, int index) {
         Integer negotiationAmount = new Integer(index);
-        obj.setNegotiationAmount(negotiationAmount);
+      //  obj.setNegotiationAmount(negotiationAmount);
     }
     
     public void CaseNegotiationDataOnDemand.setNegotiationCount(CaseNegotiation obj, int index) {

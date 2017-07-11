@@ -7,6 +7,8 @@ import com.equisettle.foundation.domain.Case;
 import com.equisettle.foundation.domain.CaseNegotiation;
 import com.equisettle.foundation.domain.Client;
 import java.util.Calendar;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,13 +33,13 @@ privileged aspect CaseNegotiation_Roo_DbManaged {
     @Column(name = "CASE_NEGOTIATION_SENT_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "MM")
-    private Calendar CaseNegotiation.caseNegotiationSentDate;
+    private Date CaseNegotiation.caseNegotiationSentDate;
     
-    @Column(name = "NEGOTIATION_AMOUNT")
-    private Integer CaseNegotiation.negotiationAmount;
+    @Column(name = "CASE_ATTEMPTED_NEGOTIATION_AMOUNT")
+    private Integer CaseNegotiation.caseAttemptedNegotiationAmount;
     
     @Column(name = "NEGOTIATION_MESSAGE")
-    private Integer CaseNegotiation.negotiationMessage;
+    private String CaseNegotiation.negotiationMessage;
     
     @Column(name = "CASE_DOCUMENT_URL", length = 255)
     private String CaseNegotiation.caseDocumentUrl;
@@ -48,7 +50,7 @@ privileged aspect CaseNegotiation_Roo_DbManaged {
     @Column(name = "AUDIT_CREATED_DT_TIME")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "MM")
-    private Calendar CaseNegotiation.auditCreatedDtTime;
+    private Date CaseNegotiation.auditCreatedDtTime;
     
     public Client CaseNegotiation.getCaseAttemptedById() {
         return caseAttemptedById;
@@ -74,27 +76,27 @@ privileged aspect CaseNegotiation_Roo_DbManaged {
         this.caseId = caseId;
     }
     
-    public Calendar CaseNegotiation.getCaseNegotiationSentDate() {
+    public Date CaseNegotiation.getCaseNegotiationSentDate() {
         return caseNegotiationSentDate;
     }
     
-    public void CaseNegotiation.setCaseNegotiationSentDate(Calendar caseNegotiationSentDate) {
+    public void CaseNegotiation.setCaseNegotiationSentDate(Date caseNegotiationSentDate) {
         this.caseNegotiationSentDate = caseNegotiationSentDate;
     }
     
-    public Integer CaseNegotiation.getNegotiationAmount() {
-        return negotiationAmount;
+    public Integer CaseNegotiation.getCaseAttemptedNegotiationAmount() {
+        return caseAttemptedNegotiationAmount;
     }
     
-    public void CaseNegotiation.setNegotiationAmount(Integer negotiationAmount) {
-        this.negotiationAmount = negotiationAmount;
+    public void CaseNegotiation.setCaseAttemptedNegotiationAmount(Integer negotiationAmount) {
+        this.caseAttemptedNegotiationAmount = negotiationAmount;
     }
     
-    public Integer CaseNegotiation.getNegotiationMessage() {
+    public String CaseNegotiation.getNegotiationMessage() {
         return negotiationMessage;
     }
     
-    public void CaseNegotiation.setNegotiationMessage(Integer negotiationMessage) {
+    public void CaseNegotiation.setNegotiationMessage(String negotiationMessage) {
         this.negotiationMessage = negotiationMessage;
     }
     
@@ -114,11 +116,11 @@ privileged aspect CaseNegotiation_Roo_DbManaged {
         this.negotiationCount = negotiationCount;
     }
     
-    public Calendar CaseNegotiation.getAuditCreatedDtTime() {
+    public Date CaseNegotiation.getAuditCreatedDtTime() {
         return auditCreatedDtTime;
     }
     
-    public void CaseNegotiation.setAuditCreatedDtTime(Calendar auditCreatedDtTime) {
+    public void CaseNegotiation.setAuditCreatedDtTime(Date auditCreatedDtTime) {
         this.auditCreatedDtTime = auditCreatedDtTime;
     }
     
