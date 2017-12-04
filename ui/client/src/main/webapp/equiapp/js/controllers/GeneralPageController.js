@@ -32,7 +32,8 @@ angular.module('MetronicApp').controller('caseController', function($scope, $sco
     	var otherPartyMobile=$("#otherPartyMobile").val();
     	var otherPartyEmail=$("#otherPartyEmail").val();
     	var settlementTypeId=$("#settlementTypeId").val();
-    	
+    	var offerAmount=$("#offerAmount").val();
+    	var negoMessage=$("#negoMessage").val();
     	if(caseTypeId=="" || caseTypeId ==null){
     		toastr.error("Please Select the Case Type");
     		return;
@@ -74,6 +75,16 @@ angular.module('MetronicApp').controller('caseController', function($scope, $sco
     		return;
     	}
     	
+    	if(offerAmount=="" || offerAmount ==null){
+    		toastr.error("Enter the offer amount");
+    		return;
+    	}
+    	
+    	if(negoMessage=="" || negoMessage ==null){
+    		toastr.error("Please enter some message to the party");
+    		return;
+    	}
+    	
     	
     	$('#addCaseButton').attr('disabled', 'disabled'); 
     	 var input={"caseTypeId":caseTypeId,
@@ -83,7 +94,9 @@ angular.module('MetronicApp').controller('caseController', function($scope, $sco
     			 "otherPartyName":otherPartyName,
     			 "otherPartyMobile":otherPartyMobile,
     			 "otherPartyEmail":otherPartyEmail,
-    			 "settlementTypeId":settlementTypeId
+    			 "settlementTypeId":settlementTypeId,
+    			 "offerAmount":offerAmount,
+    			 "negoMessage":negoMessage
     	    		};
         $.ajax({
             dataType: "json",
@@ -240,7 +253,7 @@ function gotoCaseDetailPage(caseId){
 }
 
 
-angular.module('MetronicApp').controller('caseDetailController', function($scope, $scope, $http, $timeout) {
+angular.module('MetronicApp').controller('caseDetailController', function($scope, $scope, $http, $timeout,$compile) {
 	$("#negoMessage").val("");
 	/*$scope.sentDate1="";
 	$scope.sentBy1="";
@@ -317,6 +330,17 @@ angular.module('MetronicApp').controller('caseDetailController', function($scope
 	            				$scope.counterOfferMsg3=caseData.counterOfferMsg3;
 	            				$scope.$apply();
 	            			}
+	            			
+	            			var caseNegoCount= data.caseNegoCount;
+	            			$("#actionButton1").empty();
+	            			$("#actionButton2").empty();
+	            			$("#actionButton3").empty();
+	            			$("#actionButton"+caseNegoCount+"").empty();
+	            			$scope.actionButton="";
+	            			$scope.actionButton+='<button type="button" class="btn red" ng-click="acceptOffer()"><i class="fa fa-thumbs-up"></i> Accept Offer</button>&nbsp;&nbsp;';
+	            			$scope.actionButton+='<button type="button" class="btn red" onclick="showcouterOfferModal()"><i class="fa fa-comment"></i> Counter Offer</button>';
+	            			var temp = $compile($scope.actionButton)($scope);
+							$("#actionButton"+caseNegoCount+"").append(temp);
 	            		}
 	            		
 	            	}else{
@@ -336,6 +360,7 @@ angular.module('MetronicApp').controller('caseDetailController', function($scope
 	    }
 	  
 	  $scope.findCaseFullDetails();
+	  confirmkey=0;
 	  
 	  
 	  $scope.submitOffer=function(){
@@ -361,7 +386,8 @@ angular.module('MetronicApp').controller('caseDetailController', function($scope
 	            	if(data.error=="false"){
 	            		$scope.findCaseFullDetails();
 	            		$("#offerAmount").val("");
-	            		$("#negoMessage").val("")
+	            		$("#negoMessage").val("");
+                        $("#couterOfferModal").modal("hide");
 	            		toastr.info(data.message);
 	            		
 	            	}else{
@@ -381,7 +407,7 @@ angular.module('MetronicApp').controller('caseDetailController', function($scope
 	    }
 	  
 	  $scope.acceptOffer=function(){
-	    	 var input={"currentCaseId":currentCaseId};
+	    	 var input={"currentCaseId":currentCaseId,"confirmkey":confirmkey};
 	        $.ajax({
 	            dataType: "json",
 	            type : 'POST',
@@ -389,7 +415,48 @@ angular.module('MetronicApp').controller('caseDetailController', function($scope
 	            data: {"input":JSON.stringify(input)} ,
 	            success: function(data) {
 	            	if(data.error=="false"){
-	            		
+	            		if(data.confirmkey=="0"){
+	            			$scope.confirmMessage=data.message;
+	            			$scope.$apply();
+	            			$("#acceptConfirmation").modal("show");
+	            		}else{
+	            			$("#acceptConfirmation").modal("hide");
+	            			$scope.confirmMessage="";
+	            			toastr.success(data.message);
+	            			confirmkey=0;
+	            			$scope.findCaseFullDetails();
+	            		}
+	            	}else{
+	            		if(data.errorCode!=undefined){
+	            			toastr.error(data.message);
+	            			location.href="login.html";
+	            		}
+	            		toastr.error(data.message);
+	            	}
+	            	
+	            },
+	            error: function(data) {
+	            	$('#addCaseButton').removeAttr('disabled');
+	            }
+	        });
+	    	
+	    }
+	  
+	  $scope.acceptOfferConfirm=function(){
+		  confirmkey=1;
+		  $scope.acceptOffer();
+	  }
+	  
+	  $scope.finalOfferArbitration=function(){
+	    	 var input={"currentCaseId":currentCaseId};
+	        $.ajax({
+	            dataType: "json",
+	            type : 'POST',
+	            url: urlappend2+'client/finalOfferArbitration',
+	            data: {"input":JSON.stringify(input)} ,
+	            success: function(data) {
+	            	if(data.error=="false"){
+	            		toastr.success(data.message);
 	            	}else{
 	            		if(data.errorCode!=undefined){
 	            			toastr.error(data.message);
@@ -410,10 +477,14 @@ angular.module('MetronicApp').controller('caseDetailController', function($scope
 });
 
 
+function showcouterOfferModal(){
+	$("#couterOfferModal").modal("show");
+}
+
 function formNegoSection(){
 	
 }
 
-
+var confirmkey=0;
 
 

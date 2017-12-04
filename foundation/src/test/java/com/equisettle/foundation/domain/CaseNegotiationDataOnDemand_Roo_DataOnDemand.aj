@@ -74,7 +74,7 @@ privileged aspect CaseNegotiationDataOnDemand_Roo_DataOnDemand {
     
     public void CaseNegotiationDataOnDemand.setNegotiationMessage(CaseNegotiation obj, int index) {
         Integer negotiationMessage = new Integer(index);
-        obj.setNegotiationMessage(negotiationMessage);
+       // obj.setNegotiationMessage(negotiationMessage);
     }
     
     public CaseNegotiation CaseNegotiationDataOnDemand.getSpecificCaseNegotiation(int index) {

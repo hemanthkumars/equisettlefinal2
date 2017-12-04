@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-07-11 10:44:29
+Date: 2017-07-18 15:05:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,14 +60,23 @@ CREATE TABLE `case_negotiation` (
   CONSTRAINT `case_negotiation_ibfk_1` FOREIGN KEY (`CASE_ATTEMPTED_BY_ID`) REFERENCES `client` (`CLIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `case_negotiation_ibfk_2` FOREIGN KEY (`CASE_RESPONSE_BY_ID`) REFERENCES `client` (`CLIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `case_negotiation_ibfk_3` FOREIGN KEY (`CASE_ID`) REFERENCES `equisettle_case` (`CASE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of case_negotiation
 -- ----------------------------
 INSERT INTO `case_negotiation` VALUES ('1', '2017-07-09 19:03:49', '6', '500', 'i am offering 500 USD', '3', '200', 'i can only give 200 USD', '1', null, '1', '2017-07-11 10:19:25', '2017-07-09 19:03:49', null, '1');
 INSERT INTO `case_negotiation` VALUES ('2', '2017-07-11 10:22:36', '6', '400', 'Atleast give me 400 $', '3', '300', 'ok  this is my best i can give $300', '1', null, '2', '2017-07-11 10:27:35', '2017-07-11 10:22:36', null, '1');
-INSERT INTO `case_negotiation` VALUES ('3', '2017-07-11 10:33:47', '6', '350', 'finally i can give $350 . if you are not giving we shall meet in the court ', null, null, null, '1', null, '3', null, '2017-07-11 10:33:47', null, '1');
+INSERT INTO `case_negotiation` VALUES ('3', '2017-07-11 10:33:47', '6', '350', 'finally i can give $350 . if you are not giving we shall meet in the court  From Equisettle : Case is settled for $350 ', null, '350', 'finally i can give $350 . if you are not giving we shall meet in the court  From Equisettle : Case is settled for $350  From Equisettle : Case is settled for $350 ', '1', null, '3', null, '2017-07-11 10:33:47', '350', '2');
+INSERT INTO `case_negotiation` VALUES ('4', '2017-07-11 12:23:28', '6', '1000', 'i want $1000  From Equisettle : Case is settled for $800 ', '3', '800', 'i cannot give more than $800 From Equisettle : Case is settled for $800 ', '2', null, '1', '2017-07-11 12:22:46', '2017-07-11 12:21:20', '800', '2');
+INSERT INTO `case_negotiation` VALUES ('5', '2017-07-11 12:40:25', '6', '5000', 'i will give 5000 for the vehicle damage we shall settle it here itself', '3', '8000', 'i want atleast 8000', '3', null, '1', '2017-07-11 12:41:30', '2017-07-11 12:40:25', null, '3');
+INSERT INTO `case_negotiation` VALUES ('6', '2017-07-11 12:42:54', '6', '6000', 'best i can offer is $6000 | Equisettle says: Case is settled for $6000 ', null, '6000', ' From Equisettle : Case is settled for $6000 ', '3', null, '2', '2017-07-11 12:43:17', '2017-07-11 12:42:54', '6000', '2');
+INSERT INTO `case_negotiation` VALUES ('7', '2017-07-11 14:38:36', '3', '20000', 'i want 20000 usd .. we can settle the case off the court', '6', '10000', 'i can only offer $10000 ', '4', null, '1', '2017-07-11 14:39:25', '2017-07-11 14:38:36', null, '3');
+INSERT INTO `case_negotiation` VALUES ('8', '2017-07-11 14:40:59', '3', '18000', 'atleast 18000 i need | Equisettle says: Case is settled for $18000 ', '6', '18000', ' From Equisettle : Case is settled for $18000 ', '4', null, '2', '2017-07-11 14:41:23', '2017-07-11 14:40:59', '18000', '2');
+INSERT INTO `case_negotiation` VALUES ('9', '2017-07-11 18:01:48', '7', '8000', 'Please give Jeevaraj', null, null, null, '8', null, '1', null, '2017-07-11 18:01:48', null, '1');
+INSERT INTO `case_negotiation` VALUES ('10', '2017-07-11 18:27:09', '7', '2000', 'please give  2000 usd', '8', '1800', '$1800 i can give ', '9', null, '1', '2017-07-11 19:48:04', '2017-07-11 18:27:08', null, '3');
+INSERT INTO `case_negotiation` VALUES ('11', '2017-07-11 19:51:34', '7', '1900', 'atleast give me 1900', '8', '1800', 'i can give only 1800', '9', null, '2', '2017-07-13 22:11:59', '2017-07-11 19:51:34', null, '3');
+INSERT INTO `case_negotiation` VALUES ('12', '2017-07-13 22:24:14', '7', '1850', 'kljgkjl', '8', '1825', 'final', '9', null, '3', '2017-07-13 22:26:35', '2017-07-13 22:24:14', null, '3');
 
 -- ----------------------------
 -- Table structure for `case_status`
@@ -84,7 +93,7 @@ CREATE TABLE `case_status` (
 -- ----------------------------
 INSERT INTO `case_status` VALUES ('1', 'CASE INITIATED');
 INSERT INTO `case_status` VALUES ('2', 'CASE NEGOTIATION IN PROGRESS');
-INSERT INTO `case_status` VALUES ('3', 'OFFER ACCEPTED');
+INSERT INTO `case_status` VALUES ('3', 'OFFER ACCEPTED - CASE IS SETTLED');
 INSERT INTO `case_status` VALUES ('4', 'OFFER REJECTED');
 INSERT INTO `case_status` VALUES ('5', 'CASE IN FINAL OFFER ARBITRATION');
 INSERT INTO `case_status` VALUES ('6', 'FINAL OFFER IS ASSIGNED BY ADMIN');
@@ -136,7 +145,7 @@ CREATE TABLE `client` (
   PRIMARY KEY (`CLIENT_ID`),
   KEY `COUNTRY_ID` (`COUNTRY_ID`),
   CONSTRAINT `client_ibfk_1` FOREIGN KEY (`COUNTRY_ID`) REFERENCES `country` (`COUNTRY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of client
@@ -147,6 +156,8 @@ INSERT INTO `client` VALUES ('3', 'bhaskar', null, 'hemanthkumars.india@gmail.co
 INSERT INTO `client` VALUES ('4', 'hemanth', null, 'hemanthkk@gmail.com', 'asfasdf', 'bangalor', '97', 'hemanth32', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, '2017-06-25 15:14:02');
 INSERT INTO `client` VALUES ('5', 'hemanth', null, 'sadfsadf@gmgial.com', 'fasdfa', 'bagnalore', '97', 'chaturya', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, '2017-06-25 19:43:03');
 INSERT INTO `client` VALUES ('6', 'hemanth', null, 'hemanth@gmail.com', 'sdadfasf', 'bangalore', '97', '', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, '2017-06-29 10:51:33');
+INSERT INTO `client` VALUES ('7', 'Bhaskaran', null, 'bhaskaran0907@gmail.com', '146 OMBR Layout', 'Bangalore', '97', '', '7878787878', 'JU8gQvPhy6AYiYJpAX5jsg==', null, '2017-07-11 17:37:37');
+INSERT INTO `client` VALUES ('8', 'jeevaraj', '', 'jeevaraj@jeeva.com', 'no 80 jayanagar', 'Bangalore', '97', 'jeevaraj@jeeva@gmail.com', '7878787878', 'jHvW5p9mYHl4bJjvXSDePQ==', null, '2017-07-11 17:53:47');
 
 -- ----------------------------
 -- Table structure for `country`
@@ -430,14 +441,18 @@ CREATE TABLE `equisettle_case` (
   CONSTRAINT `equisettle_case_ibfk_5` FOREIGN KEY (`CLIENT_ID_WHO_VOWS_MONEY`) REFERENCES `client` (`CLIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `equisettle_case_ibfk_6` FOREIGN KEY (`CLIENT_ID_WHO_CLAIMS_MONEY`) REFERENCES `client` (`CLIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `equisettle_case_ibfk_7` FOREIGN KEY (`MEDIATOR_ID`) REFERENCES `mediator` (`MEDIATOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of equisettle_case
 -- ----------------------------
-INSERT INTO `equisettle_case` VALUES ('1', '2', 'vehicle case', 'ddsggsd', 'asdsafaa', '6', '3', '1', '3', '6', null, '2017-06-29 12:09:59', null);
-INSERT INTO `equisettle_case` VALUES ('2', '1', 'vehicle case1', 'dfsfsdsd', 'sdfsafsddf', '6', '3', '1', '3', '6', null, '2017-06-29 12:18:04', null);
-INSERT INTO `equisettle_case` VALUES ('3', '1', 'vehicle33', 'sadfsdf', 'nosdfasdf', '6', '3', '1', '3', '6', null, '2017-07-01 14:58:22', null);
+INSERT INTO `equisettle_case` VALUES ('1', '2', 'vehicle case', 'ddsggsd', 'asdsafaa', '6', '3', '3', '3', '6', null, '2017-06-29 12:09:59', null);
+INSERT INTO `equisettle_case` VALUES ('2', '1', 'vehicle case1', 'dfsfsdsd', 'sdfsafsddf', '6', '3', '3', '3', '6', null, '2017-06-29 12:18:04', null);
+INSERT INTO `equisettle_case` VALUES ('3', '1', 'vehicle33', 'sadfsdf', 'nosdfasdf', '6', '3', '3', '3', '6', null, '2017-07-01 14:58:22', null);
+INSERT INTO `equisettle_case` VALUES ('4', '8', 'Property Case', 'property case', 'no 80 1st main', '3', '6', '3', '6', '3', null, '2017-07-11 14:37:42', null);
+INSERT INTO `equisettle_case` VALUES ('5', '8', 'property case2', 'dsgsdfgsfdgsgd', 'sdafasdfsdafsdafasdf', '6', '3', '1', '3', '6', null, '2017-07-11 14:58:27', null);
+INSERT INTO `equisettle_case` VALUES ('8', '1', 'credit card settlement', 'case details', 'no 80 jayanagar', '7', '8', '1', '8', '7', null, '2017-07-11 17:53:47', null);
+INSERT INTO `equisettle_case` VALUES ('9', '8', 'vehicle accident case', 'vehicle accident case details', 'no 80 jayanagar', '7', '8', '4', '8', '7', null, '2017-07-11 18:26:28', null);
 
 -- ----------------------------
 -- Table structure for `mediator`

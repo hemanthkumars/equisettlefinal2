@@ -133,7 +133,7 @@
                                                                 
                             
                             <div>
-                            	<div class="mytable tabDiv">
+                            	<!-- <div class="mytable tabDiv">
                            	
                            		<div>
   								<div class="lableright"> <div class="input-icon">
@@ -149,15 +149,14 @@
                                                                     <div class="form-actions right">
                                           
                                            <div class="btn-group btn-group-lg btn-group-solid margin-bottom-20" >
-                                               <button type="button" class="btn red" ><i class="fa fa-thumbs-up"></i> Accept Offer</button>
+                                               
                                                <button type="button" class="btn green" ng-click="submitOffer()">Submit Offer</button>
-                                                 <button type="button" class="btn blue">Final Offer Arbitration</button></div>
                                         </div>
                                                                     </div>
                            		</div>
                            	</div>
                            	                                     
-                              </div>   
+                              </div>  -->  
                         <div class="row">
                     	<!-- 1st party --> 
                        			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" id="1stParty">
@@ -234,8 +233,10 @@
                            	
                        			</div>
                        		</div>
+                       		<span id="actionButton1"> </span>
+    
       
-      
+       <!-- <a href="#/finalofferarbitration" class="btn  red" onclick="showcouterOfferModal()"> Counter Offer <i class="fa fa-comment"></i> </a> -->
       <div class="line row"></div>
                           <div class="row">
                     	<!-- 1st party --> 
@@ -313,7 +314,7 @@
                            	
                        			</div>
                        		</div>
-      
+      <span id="actionButton2"> </span>
                      <div class="line row"></div>     
                              <div class="row">
                     	<!-- 1st party --> 
@@ -392,12 +393,55 @@
                        			</div>
                        		</div>
       
-      
+      <span id="actionButton3"> </span>
       <div class="line row"></div>
+      
+       <div class="btn-group btn-group-lg btn-group-solid margin-bottom-20" >
+                                                 <button type="button" class="btn blue" ng-click="finalOfferArbitration()">Final Offer Arbitration</button></div>
                         
                                                        
                                             </div>                   
                         <!-- END DASHBOARD STATS 1-->
-                        
+                        <div class="modal fade bs-modal-sm" id="acceptConfirmation" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                        <h4 class="modal-title">Accept Confirmation</h4>
+                                                    </div>
+                                                    <div class="modal-body"> {{confirmMessage}} </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">No</button>
+                                                        <button type="button" class="btn green" ng-click="acceptOfferConfirm()">Yes</button>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        
+                                         <div class="modal fade bs-modal-sm" id="couterOfferModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                        <h4 class="modal-title">Enter Your Counter Offer</h4>
+                                                    </div>
+                                                    <div class="modal-body"> <div class="lableright"> <div class="input-icon">
+                                                                    <i class="fa fa-usd"></i>
+                                                                    <input type="number" class="form-control " id="offerAmount" placeholder="Your Offer?"> 
+                                                                    <div class="input-icon">
+                                                                    <!-- <i class="fa fa-envelope"></i> -->
+                                                                    <textarea id="negoMessage" placeholder="Type Some Message" > </textarea> </div>
+                                                                    </div></div> </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn green" ng-click="submitOffer()">Submit</button>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
                        
                         

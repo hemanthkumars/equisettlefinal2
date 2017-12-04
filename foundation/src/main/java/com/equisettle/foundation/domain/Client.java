@@ -29,8 +29,23 @@ public class Client {
 	    @Column(name = "MOBILE_NO")
 	    private String mobileNo;
 	    
+	    @Column(name = "EMAIL_OTP")
+	    private String emailOtp;
+	    
 	    
 	
+	public String getEmailOtp() {
+			return emailOtp;
+		}
+
+
+
+		public void setEmailOtp(String emailOtp) {
+			this.emailOtp = emailOtp;
+		}
+
+
+
 	public String getMobileNo() {
 			return mobileNo;
 		}
@@ -97,6 +112,15 @@ public class Client {
 		}
 	}
 	
+	public static Client  findUserByEmailAndOtp(String email,String emailOtp){
+		List<Client> logins=entityManager().createQuery("SELECT sl FROM Client sl WHERE sl.email='"+email+"' AND sl.emailOtp='"+emailOtp+"' "
+				+ "").getResultList();
+		if(logins.isEmpty()){
+			return null;
+		}else{
+			return logins.get(0);
+		}
+	}
 	
 	
 }

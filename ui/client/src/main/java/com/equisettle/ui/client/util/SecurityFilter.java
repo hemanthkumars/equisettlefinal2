@@ -48,6 +48,8 @@ public class SecurityFilter implements Filter{
 				||servletPath.startsWith("/assets")
 				||servletPath.startsWith("/client/createAccount")
 				||servletPath.startsWith("/demokendo.html")
+				||servletPath.startsWith("/client/sendOtpToEmail")
+				||servletPath.startsWith("/client/resetPassword")
 				||servletPath.equals("")){
 			chain.doFilter(request, response);
 		}else if(userContext==null){

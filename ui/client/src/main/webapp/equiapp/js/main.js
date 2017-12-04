@@ -761,5 +761,6 @@ MetronicApp.service('RefreshHandling', function($http, $state, $rootScope,$windo
 
 })
 
-var urlappend2="http://localhost:8555/client/"
+var urlappend2="http://localhost:8555/client/";
+//var urlappend2="http://schoolwala.com:8080/client/"
 

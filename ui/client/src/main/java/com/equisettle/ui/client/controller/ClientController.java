@@ -182,6 +182,8 @@ public class ClientController implements GeneralConstansts {
 			String otherPartyMobile=input.getString("otherPartyMobile");
 			String otherPartyEmail=input.getString("otherPartyEmail");
 			Integer settlementTypeId=input.getInt("settlementTypeId");
+			Integer offerAmount=input.getInt("offerAmount");
+			String negoMessage=input.getString("negoMessage");
 			UserContext userContext=SessionManager.getUserContext(request);
 			Case case1= new Case();
 			case1.setAuditCreatedDtTime(new Date(System.currentTimeMillis()));
@@ -204,8 +206,10 @@ public class ClientController implements GeneralConstansts {
 				clientByEmail.setMobileNo(otherPartyMobile);
 				Random random=new Random();
 				String pwd=String.valueOf(random.nextInt());
+				pwd="123";
 				clientByEmail.setPassword(EncryptAndDecrypt.encrypt(pwd));
 				clientByEmail.setUserName(otherPartyEmail);
+				clientByEmail.persist();
 				List<String> recepients=new ArrayList<String>();
 				recepients.add(otherPartyEmail);
 				String subject="";
@@ -241,6 +245,8 @@ public class ClientController implements GeneralConstansts {
 				case1.setClientIdWhoVowsMoney(userContext.getClient());
 			}
 			case1.persist();
+			request.setAttribute("currentCaseId", case1.getCaseId());
+			makeFirstOffer(request, reresponse);
 				output.put("error", "false");
 				output.put("message", case1.getCaseTitle()+" Case is successfully created");
 				return output.toString();
@@ -329,7 +335,7 @@ public class ClientController implements GeneralConstansts {
 			caseData.put("caseBy", case1.getCaseInitiatedClientId().getFirstName());
 			caseData.put("caseOn", case1.getCaseOnClientId().getFirstName());
 			caseData.put("mediator", "Not Assigned");
-			caseData.put("caseStatus", "In Progress");
+			caseData.put("caseStatus", case1.getCaseStatusId().getCaseStatus());
 			
 			
 			List<CaseNegotiation> caseNegotiations=CaseNegotiation.findCaseNegoDetails(caseId);
@@ -408,6 +414,7 @@ public class ClientController implements GeneralConstansts {
 				
 				
 			}
+			output.put("caseNegoCount", caseNegotiations.size());
 			output.put("caseData", caseData);
 			output.put("error", "false");
 			return output.toString();
@@ -429,9 +436,25 @@ public class ClientController implements GeneralConstansts {
 			Client loggedClient=SessionManager.getUserContext(request).getClient();
 			Integer offerAmount=input.getInt("offerAmount");
 			String negoMessage=input.getString("negoMessage");
-			Integer caseId=input.getInt("currentCaseId");
+			Integer caseId=0;
+			
+			if(input.has("currentCaseId")){
+				caseId=input.getInt("currentCaseId");
+			}else{
+				caseId=(Integer) request.getAttribute("currentCaseId");
+			}
 			
 			Case case1=Case.findCase(caseId);
+			if(case1.getCaseStatusId().getCaseStatusId()==CASE_STATUS_OFFER_ACCEPTED){
+				output.put("error", "true");
+				output.put("message", "Case already settled .Hence cannot submit another offer");
+				return output.toString();
+			}
+			if(case1.getCaseStatusId().getCaseStatusId()==CASE_STATUS_CASE_IN_FINAL_OFFER_ARBITRATION){
+				output.put("error", "true");
+				output.put("message", "Case is in final arbitration . Hence you cannot submit the offer !");
+				return output.toString();
+			}
 			Client caseIntiatedBy=case1.getCaseInitiatedClientId();
 			Client caseOn=case1.getCaseOnClientId();
 			String offerOrCounterOffer="";
@@ -492,12 +515,232 @@ public class ClientController implements GeneralConstansts {
 				caseNegotiation.setCaseResponseNegotiationAmount(offerAmount);
 				caseNegotiation.setCounterNegotiationMessage(negoMessage);
 				caseNegotiation.setRespondedDtTime(new Date(System.currentTimeMillis()));
+				caseNegotiation.setNegotiationStatusId(NEGOTIATION_STATUS_ID_OFFER_COUNTERED);
 				caseNegotiation.merge();
 				output.put("error", "false");
 				output.put("message", "Counter Offer successfully submitted !");
 			}
 			
 			output.put("error", "false");
+			return output.toString();
+			
+		}catch (Exception e) {
+			output.put("error", "true");
+			output.put("message", "Input error" );
+			return output.toString();
+		}
+	}
+	
+	@RequestMapping(value = "/acceptOffer", method = RequestMethod.POST,produces = "application/json")
+	 @ResponseBody
+	 public String acceptOffer(HttpServletRequest request,HttpServletResponse reresponse)  {
+		JSONObject input= new JSONObject(request.getParameter("input"));
+		JSONObject output= new JSONObject();
+		try {
+			Client loggedClient=SessionManager.getUserContext(request).getClient();
+			Integer caseId=input.getInt("currentCaseId");
+			Integer confirmKey=input.getInt("confirmkey");
+			List<CaseNegotiation> caseNegotiations=CaseNegotiation.findCaseNegoDetails(caseId);
+			if(caseNegotiations.isEmpty()){
+				output.put("error", "true");
+				output.put("message", "No offer is initiated yet !" );
+				return output.toString();
+			}
+				Case case1=Case.findCase(caseId);
+				if(case1.getCaseStatusId().getCaseStatusId()==CASE_STATUS_OFFER_ACCEPTED){
+					output.put("error", "true");
+					output.put("message", "Case already settled .");
+					return output.toString();
+				}
+				if(case1.getCaseStatusId().getCaseStatusId()==CASE_STATUS_CASE_IN_FINAL_OFFER_ARBITRATION){
+					output.put("error", "true");
+					output.put("message", "Case is in final arbitration . Hence you cannot accept the offer !");
+					return output.toString();
+				}
+				Client caseIntiatedBy=case1.getCaseInitiatedClientId();
+				Client caseOn=case1.getCaseOnClientId();
+				if(loggedClient.getClientId()==caseIntiatedBy.getClientId()){
+					// offer is accepted by initaitor
+					CaseNegotiation caseNegotiation=caseNegotiations.get(caseNegotiations.size()-1);
+					if(caseNegotiation.getCaseResponseById()==null){
+						output.put("error", "true");
+						output.put("message", caseOn.getFirstName()+" has not yet responded to your $"+caseNegotiation.getCaseAttemptedNegotiationAmount()+" offer . Hence you cannot accept any offer" );
+						return output.toString();
+					}
+					if(confirmKey==0){
+						output.put("error", "false");
+						output.put("message", "Are you sure to accept $"+caseNegotiation.getCaseResponseNegotiationAmount()+" offer ?" );
+						output.put("confirmkey", "0");
+						return output.toString();
+					}else if(confirmKey==1){
+						caseNegotiation.setSettledAmount(caseNegotiation.getCaseResponseNegotiationAmount());
+						caseNegotiation.setNegotiationStatusId(NEGOTIATION_STATUS_ID_ACCEPTED);
+						caseNegotiation.setNegotiationMessage(caseNegotiation.getNegotiationMessage()+" | Equisettle says : Case is settled for $"+caseNegotiation.getCaseResponseNegotiationAmount()+" ");
+						caseNegotiation.setCounterNegotiationMessage(caseNegotiation.getCounterNegotiationMessage()+" From Equisettle : Case is settled for $"+caseNegotiation.getCaseResponseNegotiationAmount()+" ");
+						caseNegotiation.setCaseNegotiationSentDate(new Date(System.currentTimeMillis()));
+						caseNegotiation.merge();
+						CaseStatus caseStatusId= new CaseStatus();
+						caseStatusId.setCaseStatusId(CASE_STATUS_OFFER_ACCEPTED);
+						case1.setCaseStatusId(caseStatusId);
+						case1.merge();
+						output.put("error", "false");
+						output.put("confirmkey", "1");
+						output.put("message", "Congrats Offer $"+caseNegotiation.getCaseAttemptedNegotiationAmount()+" successfully accepted . You will get an E-mail from Escrow shortly .So that you both proceed transfer of the funds and settle the dispute !" );
+						return output.toString();
+					}
+					
+				}else{
+					// offer is accepted by responder
+					CaseNegotiation caseNegotiation=caseNegotiations.get(caseNegotiations.size()-1);
+					if(caseNegotiation.getCaseResponseById()!=null){
+						output.put("error", "true");
+						output.put("message", "You have already submitted $"+caseNegotiation.getCaseResponseNegotiationAmount()+" counter offer . Hence you cannot accept the offer now!" );
+						return output.toString();
+					}
+					if(confirmKey==0){
+						output.put("error", "false");
+						output.put("confirmkey", "0");
+						output.put("message", "Are you sure to accept $"+caseNegotiation.getCaseAttemptedNegotiationAmount()+" offer ?" );
+						return output.toString();
+					}else if(confirmKey==1){
+						caseNegotiation.setSettledAmount(caseNegotiation.getCaseAttemptedNegotiationAmount());
+						caseNegotiation.setCaseResponseNegotiationAmount(caseNegotiation.getCaseAttemptedNegotiationAmount());
+						caseNegotiation.setNegotiationStatusId(NEGOTIATION_STATUS_ID_ACCEPTED);
+						caseNegotiation.setNegotiationMessage(caseNegotiation.getNegotiationMessage()+" | Equisettle says: Case is settled for $"+caseNegotiation.getCaseResponseNegotiationAmount()+" ");
+						caseNegotiation.setCounterNegotiationMessage(" | Equisettle says  : Case is settled for $"+caseNegotiation.getCaseResponseNegotiationAmount()+" ");
+						caseNegotiation.setRespondedDtTime(new Date(System.currentTimeMillis()));
+						caseNegotiation.setCaseResponseById(loggedClient);
+						caseNegotiation.merge();
+						CaseStatus caseStatusId= new CaseStatus();
+						caseStatusId.setCaseStatusId(CASE_STATUS_OFFER_ACCEPTED);
+						case1.setCaseStatusId(caseStatusId);
+						case1.merge();
+						output.put("error", "false");
+						output.put("confirmkey", "1");
+						output.put("message", "Congrats Offer $"+caseNegotiation.getCaseAttemptedNegotiationAmount()+" successfully accepted . You will get an E-mail from Escrow shortly .So that you both proceed transfer of the funds and settle the dispute !" );
+						return output.toString();
+					}
+				}
+				
+				output.put("error", "true");
+				output.put("message", "Some Error occurred" );
+				return output.toString();
+			
+		}catch (Exception e) {
+			output.put("error", "true");
+			output.put("message", "Input error" );
+			return output.toString();
+		}
+	}
+	
+	@RequestMapping(value = "/finalOfferArbitration", method = RequestMethod.POST,produces = "application/json")
+	 @ResponseBody
+	 public String finalOfferArbitration(HttpServletRequest request,HttpServletResponse reresponse)  {
+		JSONObject input= new JSONObject(request.getParameter("input"));
+		JSONObject output= new JSONObject();
+		try {
+			Client client=SessionManager.getUserContext(request).getClient();
+			Integer caseId=input.getInt("currentCaseId");
+			List<CaseNegotiation> caseNegotiations=CaseNegotiation.findCaseNegoDetails(caseId);
+			 Case case1=Case.findCase(caseId);
+             if(case1.getCaseStatusId().getCaseStatusId()==CASE_STATUS_OFFER_ACCEPTED){
+					output.put("error", "true");
+					output.put("message", "Case is already settled .");
+					return output.toString();
+				}
+		    if(caseNegotiations.size()<3){
+				output.put("error", "true");
+				output.put("message", "You can go for Final Offer Arbitration only after 3 attempts of negotiation !" );
+				return output.toString();
+		    }
+		    if(caseNegotiations.size()==3){
+                if(caseNegotiations.get(caseNegotiations.size()-1).getCaseResponseById()==null){
+                	output.put("error", "true");
+    				output.put("message", "You can go for Final Offer Arbitration only after 3 attempts of negotiation !" );
+    				return output.toString();
+                }
+               
+                CaseStatus caseStatusId= new CaseStatus();
+                caseStatusId.setCaseStatusId(CASE_STATUS_CASE_IN_FINAL_OFFER_ARBITRATION);
+                case1.setCaseStatusId(caseStatusId);
+                case1.merge();
+				output.put("error", "false");
+				output.put("message", "Thanks for choosing Final Offer Arbitration , Equisettle will give an optimum offer to both the party  based on your case details shortly " );
+				return output.toString();
+		    }
+		    output.put("error", "true");
+			output.put("message", "Some Error occurred" );
+			return output.toString();
+			
+		}catch (Exception e) {
+			output.put("error", "true");
+			output.put("message", "Input error" );
+			return output.toString();
+		}
+	}
+	
+	@RequestMapping(value = "/sendOtpToEmail", method = RequestMethod.POST,produces = "application/json")
+	 @ResponseBody
+	 public String sendOtpToEmail(HttpServletRequest request,HttpServletResponse reresponse)  {
+		JSONObject input= new JSONObject(request.getParameter("input"));
+		JSONObject output= new JSONObject();
+		try {
+			String emailToRecover=input.getString("emailToRecover");
+			Client client=Client.findUserByEmail(emailToRecover);
+			if(client==null){
+				output.put("error", "true");
+				output.put("message", "Your Email is not registered with us !" );
+				return output.toString();
+			}
+			Random random = new Random();
+			Integer otp=random.nextInt();
+			String eOtp=EncryptAndDecrypt.encrypt(String.valueOf(otp));
+			client.setEmailOtp(eOtp);
+			client.merge();
+			List<String> recepients=new ArrayList<String>();
+			recepients.add(emailToRecover);
+			String subject="";
+			String body="";
+			subject+="Hi , "+client.getFirstName()+" Your OTP to reset Password : "+otp+"";
+			body+=" Equisettle says - Use the Following OTP to reset your password : "+otp+"";
+			body+=" * Note  ignore if you are not trying to reset your password  ";
+			SendMail.sendMail(recepients, subject, body);
+			output.put("error", "false");
+			output.put("message", "Please enter the OTP which we have sent to your Email . It may take few minutes to get your OTP");
+			return output.toString();
+			
+		}catch (Exception e) {
+			output.put("error", "true");
+			output.put("message", "Input error" );
+			return output.toString();
+		}
+	}
+	
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST,produces = "application/json")
+	 @ResponseBody
+	 public String resetPassword(HttpServletRequest request,HttpServletResponse reresponse)  {
+		JSONObject input= new JSONObject(request.getParameter("input"));
+		JSONObject output= new JSONObject();
+		try {
+			Integer otp= input.getInt("otp");
+			String password= input.getString("password");
+			String emailToRecover= input.getString("emailToRecover");
+			Client client=Client.findUserByEmail(emailToRecover);
+			if(client==null){
+				output.put("error", "true");
+				output.put("message", "Invalid Email" );
+				return output.toString();
+			}
+			client=Client.findUserByEmailAndOtp(emailToRecover, EncryptAndDecrypt.encrypt(String.valueOf(otp)));
+			if(client==null){
+				output.put("error", "true");
+				output.put("message", "You have entered the wrong otp !" );
+				return output.toString();
+			}
+			client.setPassword(EncryptAndDecrypt.encrypt(password));
+			client.merge();
+			output.put("error", "false");
+			output.put("message", "Password Successfuly resetted! ");
 			return output.toString();
 			
 		}catch (Exception e) {
