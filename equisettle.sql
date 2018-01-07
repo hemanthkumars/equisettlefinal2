@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-07-18 15:05:05
+Date: 2018-01-07 15:31:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -141,6 +141,7 @@ CREATE TABLE `client` (
   `MOBILE_NO` varchar(255) DEFAULT NULL,
   `PASSWORD` varchar(500) DEFAULT NULL,
   `LAST_LOGGED_IN` datetime DEFAULT NULL,
+  `EMAIL_OTP` varchar(255) DEFAULT NULL,
   `AUDIT_CREATED_DT_TIME` datetime DEFAULT NULL,
   PRIMARY KEY (`CLIENT_ID`),
   KEY `COUNTRY_ID` (`COUNTRY_ID`),
@@ -150,14 +151,14 @@ CREATE TABLE `client` (
 -- ----------------------------
 -- Records of client
 -- ----------------------------
-INSERT INTO `client` VALUES ('1', 'hemanth', null, 'kuar@gmai.com', 'sdafasdf', 'bangalfo', '97', 'hemanth', null, 'HsPkKUCJPzgQrTz0Y/D6Sw==', null, '2017-06-20 20:22:18');
-INSERT INTO `client` VALUES ('2', 'hemanth', null, 'jasdfkkj@gail.vom', 'no 80 1st man sdfasdfaf', 'bangalore', '97', 'hemanth123', null, 'HsPkKUCJPzgQrTz0Y/D6Sw==', null, '2017-06-21 06:08:12');
-INSERT INTO `client` VALUES ('3', 'bhaskar', null, 'hemanthkumars.india@gmail.com', 'kjkjkjdfkgjsk', 'bangalore', '97', 'hemanth1', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, '2017-06-25 15:11:46');
-INSERT INTO `client` VALUES ('4', 'hemanth', null, 'hemanthkk@gmail.com', 'asfasdf', 'bangalor', '97', 'hemanth32', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, '2017-06-25 15:14:02');
-INSERT INTO `client` VALUES ('5', 'hemanth', null, 'sadfsadf@gmgial.com', 'fasdfa', 'bagnalore', '97', 'chaturya', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, '2017-06-25 19:43:03');
-INSERT INTO `client` VALUES ('6', 'hemanth', null, 'hemanth@gmail.com', 'sdadfasf', 'bangalore', '97', '', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, '2017-06-29 10:51:33');
-INSERT INTO `client` VALUES ('7', 'Bhaskaran', null, 'bhaskaran0907@gmail.com', '146 OMBR Layout', 'Bangalore', '97', '', '7878787878', 'JU8gQvPhy6AYiYJpAX5jsg==', null, '2017-07-11 17:37:37');
-INSERT INTO `client` VALUES ('8', 'jeevaraj', '', 'jeevaraj@jeeva.com', 'no 80 jayanagar', 'Bangalore', '97', 'jeevaraj@jeeva@gmail.com', '7878787878', 'jHvW5p9mYHl4bJjvXSDePQ==', null, '2017-07-11 17:53:47');
+INSERT INTO `client` VALUES ('1', 'hemanth', null, 'kuar@gmai.com', 'sdafasdf', 'bangalfo', '97', 'hemanth', null, 'HsPkKUCJPzgQrTz0Y/D6Sw==', null, null, '2017-06-20 20:22:18');
+INSERT INTO `client` VALUES ('2', 'hemanth', null, 'jasdfkkj@gail.vom', 'no 80 1st man sdfasdfaf', 'bangalore', '97', 'hemanth123', null, 'HsPkKUCJPzgQrTz0Y/D6Sw==', null, null, '2017-06-21 06:08:12');
+INSERT INTO `client` VALUES ('3', 'bhaskar', null, 'hemanthkumars.india@gmail.com', 'kjkjkjdfkgjsk', 'bangalore', '97', 'hemanth1', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, 'NXo9pzOZsY270h0zSl/j0A==', '2017-06-25 15:11:46');
+INSERT INTO `client` VALUES ('4', 'hemanth', null, 'hemanthkk@gmail.com', 'asfasdf', 'bangalor', '97', 'hemanth32', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, null, '2017-06-25 15:14:02');
+INSERT INTO `client` VALUES ('5', 'hemanth', null, 'sadfsadf@gmgial.com', 'fasdfa', 'bagnalore', '97', 'chaturya', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, null, '2017-06-25 19:43:03');
+INSERT INTO `client` VALUES ('6', 'hemanth', null, 'hemanth@gmail.com', 'sdadfasf', 'bangalore', '97', '', null, 'jHvW5p9mYHl4bJjvXSDePQ==', null, null, '2017-06-29 10:51:33');
+INSERT INTO `client` VALUES ('7', 'Bhaskaran', null, 'bhaskaran0907@gmail.com', '146 OMBR Layout', 'Bangalore', '97', '', '7878787878', 'JU8gQvPhy6AYiYJpAX5jsg==', null, null, '2017-07-11 17:37:37');
+INSERT INTO `client` VALUES ('8', 'jeevaraj', '', 'jeevaraj@jeeva.com', 'no 80 jayanagar', 'Bangalore', '97', 'jeevaraj@jeeva@gmail.com', '7878787878', 'jHvW5p9mYHl4bJjvXSDePQ==', null, null, '2017-07-11 17:53:47');
 
 -- ----------------------------
 -- Table structure for `country`
